@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="format-detection" content="telephone=no">
-<title>Rapid Research</title>
+<title>Rapid Labs Beauty</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -14,10 +14,10 @@
     --navy: #122042;
     --navy-mid: #1a2d5a;
     --navy-light: #243a6e;
-    --orange: #f47920;
-    --orange-bright: #ff8c33;
-    --orange-dim: rgba(244, 121, 32, 0.10);
-    --orange-glow: rgba(244, 121, 32, 0.25);
+    --pink: #ff7eb3;
+    --pink-bright: #ffb7d5;
+    --pink-dim: rgba(255, 126, 179, 0.10);
+    --pink-glow: rgba(255, 126, 179, 0.25);
     --blue-accent: #2e7bc4;
     --blue-bright: #4da3e8;
     --blue-dim: rgba(46, 123, 196, 0.12);
@@ -28,10 +28,10 @@
     --card-bg: #101d38;
     --surface: #162040;
     --border: rgba(255,255,255,0.06);
-    --border-accent: rgba(244, 121, 32, 0.15);
+    --border-accent: rgba(255, 126, 179, 0.15);
     --success: #34d399;
     --danger: #f56565;
-    --btn: var(--orange);
+    --btn: var(--pink);
     --btn-text: #ffffff;
     --radius: 14px;
     --radius-sm: 10px;
@@ -48,60 +48,60 @@
   .age-gate { position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center;animation:fadeIn .5s ease; }
   .age-gate.hidden { display:none; }
   .age-gate-brand { display:flex;align-items:center;gap:10px;margin-bottom:6px; }
-  .age-gate-shield { width:42px;height:42px;background:linear-gradient(135deg,var(--navy-mid),var(--orange));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 16px rgba(244,121,32,.2); }
+  .age-gate-shield { width:42px;height:42px;background:linear-gradient(135deg,var(--navy-mid),var(--pink));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 16px rgba(255,126,179,.2); }
   .age-gate-logo-text { text-align:left; }
   .age-gate-logo-text .name { font-size:22px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1.1; }
-  .age-gate-logo-text .name span { color:var(--orange); }
+  .age-gate-logo-text .name span { color:var(--pink); }
   .age-gate-logo-text .sub { font-size:9px;color:var(--hint);text-transform:uppercase;letter-spacing:3px;font-weight:600; }
-  .age-gate-divider { width:40px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--navy-light),var(--orange));margin:20px 0; }
-  .age-gate-icon { font-size:44px;margin-bottom:16px;filter:drop-shadow(0 4px 12px rgba(244,121,32,.2)); }
+  .age-gate-divider { width:40px;height:3px;border-radius:2px;background:linear-gradient(90deg,var(--navy-light),var(--pink));margin:20px 0; }
+  .age-gate-icon { font-size:44px;margin-bottom:16px;filter:drop-shadow(0 4px 12px rgba(255,126,179,.2)); }
   .age-gate-title { font-size:19px;font-weight:700;margin-bottom:6px; }
   .age-gate-text { font-size:13px;color:var(--hint);line-height:1.6;margin-bottom:24px;max-width:320px; }
   .age-gate-checks { display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;margin-bottom:24px; }
   .age-check { display:flex;align-items:flex-start;gap:10px;text-align:left;cursor:pointer;-webkit-user-select:none;user-select:none; }
   .check-box { width:22px;height:22px;border-radius:6px;border:2px solid rgba(255,255,255,.12);background:var(--surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s ease;margin-top:1px; }
-  .check-box.checked { background:var(--orange);border-color:var(--orange);box-shadow:0 2px 8px rgba(244,121,32,.3); }
+  .check-box.checked { background:var(--pink);border-color:var(--pink);box-shadow:0 2px 8px rgba(255,126,179,.3); }
   .check-box::after { content:'✓';color:#fff;font-size:13px;font-weight:700;opacity:0;transition:opacity .15s ease; }
   .check-box.checked::after { opacity:1; }
   .check-label { font-size:13px;color:var(--text-secondary);line-height:1.4; }
   .check-label strong { color:#fff; }
-  .age-enter-btn { width:100%;max-width:340px;padding:14px;border:none;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--orange),var(--orange-bright));color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s ease;opacity:.3;pointer-events:none;box-shadow:0 4px 20px rgba(244,121,32,.25); }
+  .age-enter-btn { width:100%;max-width:340px;padding:14px;border:none;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--pink),var(--pink-bright));color:#fff;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s ease;opacity:.3;pointer-events:none;box-shadow:0 4px 20px rgba(255,126,179,.25); }
   .age-enter-btn.enabled { opacity:1;pointer-events:auto; }
   .age-enter-btn.enabled:active { transform:scale(.98); }
 
   /* BANNER */
   .banner { position:relative;width:100%;padding:24px 18px 22px;background:linear-gradient(170deg,#0d1a33,#112244 40%,#0f1d3a 70%,#14203a);overflow:hidden; }
-  .banner-hex { position:absolute;inset:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23f47920'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-  .banner-glow-o { position:absolute;top:-60%;right:-30%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(244,121,32,.07),transparent 65%);pointer-events:none; }
+  .banner-hex { position:absolute;inset:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ff7eb3'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .banner-glow-o { position:absolute;top:-60%;right:-30%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255, 126, 179,.07),transparent 65%);pointer-events:none; }
   .banner-glow-b { position:absolute;bottom:-40%;left:-20%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(46,123,196,.06),transparent 65%);pointer-events:none; }
   .banner-top { display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;position:relative;z-index:1; }
   .brand-row { display:flex;align-items:center;gap:10px; }
-  .brand-shield { width:38px;height:38px;background:linear-gradient(135deg,var(--navy-mid),var(--orange));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 12px rgba(244,121,32,.2);flex-shrink:0; }
+  .brand-shield { width:38px;height:38px;background:linear-gradient(135deg,var(--navy-mid),var(--pink));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 3px 12px rgba(255, 126, 179,.2);flex-shrink:0; }
   .brand-text .b-name { font-size:18px;font-weight:800;color:#fff;letter-spacing:-.3px;line-height:1.1; }
-  .brand-text .b-name span { color:var(--orange); }
+  .brand-text .b-name span { color:var(--pink); }
   .brand-text .b-tag { font-size:8.5px;color:var(--hint);text-transform:uppercase;letter-spacing:2.5px;font-weight:600;margin-top:1px; }
-  .live-badge { display:flex;align-items:center;gap:5px;background:var(--orange-dim);border:1px solid var(--border-accent);padding:5px 10px;border-radius:8px;font-size:11px;font-weight:600;color:var(--orange); }
-  .pulse-dot { width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 var(--orange-glow)} 50%{opacity:.5;box-shadow:0 0 0 6px transparent} }
+  .live-badge { display:flex;align-items:center;gap:5px;background:var(--pink-dim);border:1px solid var(--border-accent);padding:5px 10px;border-radius:8px;font-size:11px;font-weight:600;color:var(--pink); }
+  .pulse-dot { width:6px;height:6px;border-radius:50%;background:var(--pink);animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;box-shadow:0 0 0 0 var(--pink-glow)} 50%{opacity:.5;box-shadow:0 0 0 6px transparent} }
   .banner-stats { display:flex;gap:7px;position:relative;z-index:1; }
   .stat-chip { flex:1;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 8px;text-align:center; }
   .stat-value { font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700; }
-  .stat-value.orange { color:var(--orange); }
+  .stat-value.pink { color:var(--pink); }
   .stat-value.blue { color:var(--blue-bright); }
   .stat-label { font-size:9px;color:var(--hint);text-transform:uppercase;letter-spacing:1.2px;margin-top:2px;font-weight:500; }
 
   /* NAV */
   .nav-tabs { display:flex;gap:4px;padding:10px 12px 6px;background:var(--bg);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border); }
   .nav-tab { flex:1;padding:10px 8px;text-align:center;font-size:12px;font-weight:600;color:var(--hint);background:none;border:none;border-radius:var(--radius-sm);cursor:pointer;font-family:inherit;transition:all .2s ease;position:relative;letter-spacing:.3px; }
-  .nav-tab.active { color:var(--orange);background:var(--orange-dim); }
-  .nav-tab.active::after { content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--orange);border-radius:1px; }
+  .nav-tab.active { color:var(--pink);background:var(--pink-dim); }
+  .nav-tab.active::after { content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--pink);border-radius:1px; }
   .nav-tab:active { transform:scale(.96); }
 
   /* CATEGORIES */
   .categories { display:flex;gap:8px;padding:12px 16px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none; }
   .categories::-webkit-scrollbar { display:none; }
   .cat-pill { flex-shrink:0;padding:7px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s ease;border:1px solid var(--border);background:transparent;color:var(--hint);font-family:inherit;letter-spacing:.3px; }
-  .cat-pill.active { background:linear-gradient(135deg,var(--orange),var(--orange-bright));color:#fff;border-color:var(--orange);box-shadow:0 2px 12px var(--orange-glow); }
+  .cat-pill.active { background:linear-gradient(135deg,var(--pink),var(--pink-bright));color:#fff;border-color:var(--pink);box-shadow:0 2px 12px var(--pink-glow); }
   .cat-pill:active { transform:scale(.95); }
 
   /* SECTION */
@@ -113,14 +113,14 @@
   .products-grid { display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 12px 16px; }
   .product-card { background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform .15s ease;position:relative; }
   .product-card:active { transform:scale(.97); }
-  .product-visual { position:relative;width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;overflow:hidden;background:linear-gradient(145deg,rgba(18,32,66,.8),rgba(26,45,90,.6) 40%,rgba(244,121,32,.04)); }
-  .product-visual::before { content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(244,121,32,.05),transparent 50%),radial-gradient(circle at 20% 80%,rgba(46,123,196,.05),transparent 50%); }
-  .product-visual::after { content:'';position:absolute;bottom:8px;right:8px;width:24px;height:24px;opacity:.08;border:2px solid var(--orange);border-radius:50%; }
+  .product-visual { position:relative;width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;overflow:hidden;background:linear-gradient(145deg,rgba(18,32,66,.8),rgba(26,45,90,.6) 40%,rgba(255, 126, 179,.04)); }
+  .product-visual::before { content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255, 126, 179,.05),transparent 50%),radial-gradient(circle at 20% 80%,rgba(46,123,196,.05),transparent 50%); }
+  .product-visual::after { content:'';position:absolute;bottom:8px;right:8px;width:24px;height:24px;opacity:.08;border:2px solid var(--pink);border-radius:50%; }
   .product-icon { font-size:42px;z-index:1;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3)); }
   .product-form-tag { font-size:8.5px;font-family:'JetBrains Mono',monospace;color:var(--blue-bright);background:var(--blue-dim);padding:2px 8px;border-radius:4px;z-index:1;letter-spacing:.5px;font-weight:500; }
   .product-badge { position:absolute;top:8px;left:8px;font-size:8.5px;font-weight:700;padding:3px 7px;border-radius:6px;letter-spacing:.5px;text-transform:uppercase;z-index:2; }
   .badge-new { background:var(--blue-accent);color:#fff; }
-  .badge-hot { background:var(--orange);color:#fff; }
+  .badge-hot { background:var(--pink);color:#fff; }
   .product-info { padding:10px 12px 12px; }
   .product-name { font-size:13px;font-weight:700;line-height:1.3;margin-bottom:1px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden; }
   .product-conc { font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--hint);margin-bottom:2px; }
@@ -130,9 +130,9 @@
   .product-price .dollar { font-size:12px;color:var(--hint); }
 
   /* CONTROLS */
-  .add-btn { width:32px;height:32px;border-radius:8px;border:1.5px solid var(--orange);background:var(--orange-dim);color:var(--orange);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s ease; }
-  .add-btn:active { transform:scale(.9);background:var(--orange);color:#fff; }
-  .qty-control { display:flex;align-items:center;gap:2px;background:linear-gradient(135deg,var(--orange),var(--orange-bright));border-radius:8px;padding:2px;animation:scaleIn .2s ease;box-shadow:0 2px 8px var(--orange-glow); }
+  .add-btn { width:32px;height:32px;border-radius:8px;border:1.5px solid var(--pink);background:var(--pink-dim);color:var(--pink);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s ease; }
+  .add-btn:active { transform:scale(.9);background:var(--pink);color:#fff; }
+  .qty-control { display:flex;align-items:center;gap:2px;background:linear-gradient(135deg,var(--pink),var(--pink-bright));border-radius:8px;padding:2px;animation:scaleIn .2s ease;box-shadow:0 2px 8px var(--pink-glow); }
   @keyframes scaleIn { from{transform:scale(.7);opacity:0} to{transform:scale(1);opacity:1} }
   .qty-btn { width:28px;height:28px;border-radius:6px;border:none;background:rgba(255,255,255,.15);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .1s ease; }
   .qty-btn:active { transform:scale(.9);background:rgba(255,255,255,.3); }
@@ -141,63 +141,60 @@
   /* CART BAR */
   .cart-bar { position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid var(--border);padding:10px 16px;padding-bottom:max(10px,env(safe-area-inset-bottom));z-index:1000;transform:translateY(100%);transition:transform .3s cubic-bezier(.4,0,.2,1); }
   .cart-bar.visible { transform:translateY(0); }
-  .cart-button { width:100%;padding:14px 18px;border:none;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--orange),var(--orange-bright));color:#fff;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:all .15s ease;box-shadow:0 4px 20px var(--orange-glow); }
-  .cart-button:active { transform:scale(.98);opacity:.9; }
-  .cart-btn-left { display:flex;align-items:center;gap:8px; }
-  .cart-badge { background:rgba(255,255,255,.2);font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;padding:2px 8px;border-radius:6px;min-width:24px;text-align:center; }
-  .cart-total { font-family:'JetBrains Mono',monospace;font-weight:700; }
+  .cart-button { width:100%;padding:14px 18px;border:none;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--pink),var(--pink-bright));color:#fff;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:all .15s ease;box-shadow:0 4px 20px var(--pink-glow); }
+  .cart-button:active { transform:scale(.98); }
+  .cart-badge { background:#fff;color:var(--pink);width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800; }
+  .cart-btn-left { display:flex;align-items:center;gap:10px; }
 
   /* SHEET */
-  .overlay { position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;opacity:0;visibility:hidden;transition:all .3s ease;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px); }
-  .overlay.visible { opacity:1;visibility:visible; }
-  .sheet { position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-radius:20px 20px 0 0;border-top:1px solid var(--border-accent);z-index:2001;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);max-height:85vh;overflow-y:auto;padding-bottom:max(20px,env(safe-area-inset-bottom)); }
+  .overlay { position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:2000;opacity:0;pointer-events:none;transition:opacity .3s ease; }
+  .overlay.visible { opacity:1;pointer-events:auto; }
+  .sheet { position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-radius:24px 24px 0 0;padding:20px 20px 40px;z-index:2001;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);max-height:90vh;overflow-y:auto; }
   .sheet.visible { transform:translateY(0); }
-  .sheet-handle { width:36px;height:4px;border-radius:2px;background:rgba(255,255,255,.1);margin:10px auto 0; }
-  .sheet-header { display:flex;align-items:center;justify-content:space-between;padding:16px 20px 10px; }
-  .sheet-title { font-size:18px;font-weight:700; }
-  .sheet-clear { font-size:13px;color:var(--danger);background:none;border:none;font-weight:600;cursor:pointer;font-family:inherit; }
-  .cart-item { display:flex;align-items:center;padding:12px 20px;gap:12px; }
-  .cart-item-icon { font-size:30px;flex-shrink:0; }
-  .cart-item-info { flex:1;min-width:0; }
-  .cart-item-name { font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-  .cart-item-meta { font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--hint);margin-top:2px; }
-  .divider { height:1px;background:var(--border);margin:0 20px; }
-  .summary { padding:16px 20px; }
-  .summary-row { display:flex;justify-content:space-between;padding:4px 0;font-size:13px;color:var(--hint); }
-  .summary-row.total { font-size:16px;font-weight:700;color:var(--text);padding-top:10px;margin-top:6px;border-top:1px solid var(--border);font-family:'JetBrains Mono',monospace; }
-  .disclaimer-box { margin:8px 20px;padding:10px 12px;background:rgba(244,121,32,.06);border:1px solid var(--border-accent);border-radius:var(--radius-sm);font-size:10px;color:var(--hint);line-height:1.5; }
-  .disclaimer-box strong { color:var(--orange);font-weight:700; }
-  .checkout-btn { margin:12px 20px 0;width:calc(100% - 40px);padding:15px;border:none;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--orange),var(--orange-bright));color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s ease;box-shadow:0 4px 20px var(--orange-glow); }
-  .checkout-btn:active { transform:scale(.98);opacity:.9; }
-  .checkout-btn:disabled { opacity:.5;pointer-events:none; }
+  .sheet-handle { width:40px;height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin:0 auto 16px; }
+  .sheet-header { display:flex;align-items:center;justify-content:space-between;margin-bottom:20px; }
+  .sheet-title { font-size:20px;font-weight:800; }
+  .sheet-clear { font-size:12px;color:var(--hint);background:none;border:none;font-weight:600; }
+  .cart-item { display:flex;align-items:center;gap:12px;padding:12px 0; }
+  .cart-item-icon { font-size:28px;width:48px;height:48px;background:var(--surface);border-radius:12px;display:flex;align-items:center;justify-content:center; }
+  .cart-item-info { flex:1; }
+  .cart-item-name { font-size:14px;font-weight:700;margin-bottom:2px; }
+  .cart-item-meta { font-size:11px;color:var(--hint);font-family:'JetBrains Mono',monospace; }
+  .divider { height:1px;background:var(--border);width:100%; }
+  .summary { margin-top:20px;background:var(--surface);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px; }
+  .summary-row { display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary); }
+  .summary-row.total { font-size:18px;font-weight:800;color:#fff;margin-top:6px;padding-top:12px;border-top:1px dashed var(--border); }
+  .checkout-btn { width:100%;margin-top:24px;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--pink-bright));color:#fff;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 8px 24px var(--pink-glow); }
+  .checkout-btn:active { transform:scale(.97); }
+  .disclaimer-box { margin-top:16px;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;font-size:10px;color:var(--hint);line-height:1.5;text-align:center; }
 
-  /* ORDERS */
+  /* ORDERS PAGE */
   .orders-page { padding:16px; }
+  .empty-orders { text-align:center;padding:60px 20px; }
+  .empty-orders-icon { font-size:48px;margin-bottom:16px;opacity:.3; }
+  .empty-orders-title { font-size:18px;font-weight:700;margin-bottom:8px; }
+  .empty-orders-text { font-size:13px;color:var(--hint); }
   .order-card { background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px; }
-  .order-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:12px; }
-  .order-id { font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--orange); }
+  .order-header { display:flex;justify-content:space-between;margin-bottom:12px; }
+  .order-id { font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:var(--pink); }
   .order-date { font-size:11px;color:var(--hint); }
-  .order-status { display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px; }
-  .status-processing { background:var(--orange-dim);color:var(--orange); }
+  .order-status { font-size:11px;font-weight:700;text-transform:uppercase;padding:4px 8px;border-radius:6px;margin-bottom:16px;display:inline-block; }
+  .status-processing { background:var(--pink-dim);color:var(--pink); }
   .status-shipped { background:var(--blue-dim);color:var(--blue-bright); }
   .status-delivered { background:rgba(52,211,153,.1);color:var(--success); }
-  .tracking-steps { display:flex;margin:16px 0 12px;position:relative; }
-  .tracking-step { flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;z-index:1; }
-  .step-dot { width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid rgba(255,255,255,.08);transition:all .3s ease; }
-  .step-dot.done { background:var(--orange);border-color:var(--orange);box-shadow:0 0 8px var(--orange-glow); }
-  .step-label { font-size:9px;color:var(--hint);text-align:center;text-transform:uppercase;letter-spacing:.5px; }
-  .step-label.active { color:var(--orange);font-weight:600; }
-  .tracking-line { position:absolute;top:5px;left:15%;right:15%;height:2px;background:rgba(255,255,255,.05);z-index:0; }
-  .tracking-line-fill { height:100%;background:linear-gradient(90deg,var(--orange),var(--orange-bright));border-radius:1px;transition:width .5s ease; }
-  .order-items { font-size:12px;color:var(--hint);line-height:1.6; }
-  .order-total { font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--text);margin-top:8px;text-align:right; }
-  .empty-orders { text-align:center;padding:60px 20px; }
-  .empty-orders-icon { font-size:48px;margin-bottom:12px;opacity:.4; }
-  .empty-orders-title { font-size:16px;font-weight:600;margin-bottom:4px; }
-  .empty-orders-text { font-size:13px;color:var(--hint); }
+  .tracking-steps { display:flex;justify-content:space-between;position:relative;margin-bottom:20px;padding:0 10px; }
+  .tracking-line { position:absolute;top:5px;left:20px;right:20px;height:2px;background:var(--border);z-index:1; }
+  .tracking-line-fill { position:absolute;top:0;left:0;height:100%;background:var(--pink);transition:width .5s ease; }
+  .tracking-step { position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px; }
+  .step-dot { width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--border);transition:all .3s ease; }
+  .step-dot.done { background:var(--pink);border-color:var(--pink);box-shadow:0 0 8px var(--pink-glow); }
+  .step-label { font-size:9px;color:var(--hint);font-weight:600; }
+  .step-label.active { color:var(--text); }
+  .order-items { font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px; }
+  .order-total { font-size:14px;font-weight:700;text-align:right;border-top:1px solid var(--border);padding-top:10px; }
 
-  /* INFO */
-  .info-page { padding:20px 16px; }
+  /* INFO PAGE */
+  .info-page { padding:16px; }
   .info-card { background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px; }
   .info-card-title { font-size:14px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px; }
   .info-card-text { font-size:12px;color:var(--text-secondary);line-height:1.7; }
@@ -210,13 +207,13 @@
   .product-card:nth-child(1){animation-delay:0s} .product-card:nth-child(2){animation-delay:.04s} .product-card:nth-child(3){animation-delay:.08s} .product-card:nth-child(4){animation-delay:.12s} .product-card:nth-child(5){animation-delay:.16s} .product-card:nth-child(6){animation-delay:.2s}
 
   /* TOAST */
-  .toast { position:fixed;bottom:130px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a2d5a;border:1px solid rgba(244,121,32,.3);color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:all .3s ease;white-space:nowrap;pointer-events:none; }
+  .toast { position:fixed;bottom:130px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a2d5a;border:1px solid rgba(255, 126, 179,.3);color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:all .3s ease;white-space:nowrap;pointer-events:none; }
   .toast.show { opacity:1;transform:translateX(-50%) translateY(0); }
 
   /* AI CHAT WIDGET */
   .chat-fab { position:fixed;bottom:130px;right:16px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--navy-mid),var(--blue-accent));border:1.5px solid rgba(77,163,232,.3);box-shadow:0 4px 20px rgba(46,123,196,.3);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:900;transition:all .2s ease; }
   .chat-fab:active { transform:scale(.92); }
-  .chat-fab .chat-badge { position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:var(--orange);border:2px solid var(--bg);display:none; }
+  .chat-fab .chat-badge { position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:var(--pink);border:2px solid var(--bg);display:none; }
   .chat-fab .chat-badge.show { display:block; }
   .chat-panel { position:fixed;bottom:0;left:0;right:0;height:75vh;background:var(--navy);border-radius:20px 20px 0 0;border-top:1px solid rgba(77,163,232,.2);z-index:3000;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column; }
   .chat-panel.open { transform:translateY(0); }
@@ -259,50 +256,32 @@
   <div class="chat-panel-header">
     <div class="chat-panel-title">
       <div class="ai-dot"></div>
-      AI Support
+      AI Beauty Expert
     </div>
     <button class="chat-close" onclick="toggleChat()">✕</button>
   </div>
-  <div class="chat-suggestions" id="chatSuggestions">
-    <button class="chat-suggestion" onclick="sendSuggestion('What GLP-1 peptides do you carry?')">GLP-1 products?</button>
-    <button class="chat-suggestion" onclick="sendSuggestion('What is the purity of your Semaglutide?')">Semaglutide purity?</button>
-    <button class="chat-suggestion" onclick="sendSuggestion('How long does shipping take?')">Shipping time?</button>
-    <button class="chat-suggestion" onclick="sendSuggestion('Do you provide a Certificate of Analysis?')">COA available?</button>
-  </div>
   <div class="chat-messages" id="chatMessages">
-    <div class="chat-msg bot">👋 Hi! I'm your Rapid Research AI assistant. Ask me anything about our peptide products, purity, shipping, or how to place an order!</div>
+    <div class="chat-msg bot">👋 Hi! I'm your Rapid Labs Beauty assistant. Ask me anything about our skincare products, ingredients, or how to place an order!</div>
   </div>
   <div class="chat-input-row">
-    <textarea class="chat-input" id="chatInput" placeholder="Ask about products, shipping, purity..." rows="1" onkeydown="handleChatKey(event)"></textarea>
+    <textarea class="chat-input" id="chatInput" placeholder="Ask about products, shipping, ingredients..." rows="1" onkeydown="handleChatKey(event)"></textarea>
     <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">➤</button>
   </div>
 </div>
 
 <script>
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
-// Replace with your deployed Manus backend URL after publishing
-// API endpoints are served from the same Vercel deployment
 const API_BASE = '';
 
-const SHOP={name:"Rapid Research",tagline:"PEPTIDE RESEARCH SUPPLY",currency:"$",
-categories:[{id:"all",name:"All"},{id:"glp1",name:"GLP-1"},{id:"peptides",name:"Peptides"},{id:"other",name:"Other"}],
+const SHOP={name:"Rapid Labs Beauty",tagline:"PREMIUM SKINCARE SOLUTIONS",currency:"$",
+categories:[{id:"all",name:"All"},{id:"serums",name:"Serums"},{id:"moisturizers",name:"Moisturizers"},{id:"cleansers",name:"Cleansers"}],
 products:[
-{id:1,cat:"glp1",icon:"🧪",name:"Semaglutide",conc:"5mg / vial",purity:"≥98%",form:"GLP-1S",price:85.00,badge:"",cas:"910463-68-2"},
-{id:2,cat:"glp1",icon:"🧪",name:"Semaglutide",conc:"10mg / vial",purity:"≥98%",form:"GLP-1S",price:125.00,badge:"hot",cas:"910463-68-2"},
-{id:3,cat:"glp1",icon:"🧪",name:"Semaglutide",conc:"15mg / vial",purity:"≥98%",form:"GLP-1S",price:165.00,badge:"",cas:"910463-68-2"},
-{id:4,cat:"glp1",icon:"🧪",name:"Tirzepatide",conc:"5mg / vial",purity:"≥98%",form:"GLP-TR",price:75.00,badge:"",cas:"2023788-19-2"},
-{id:5,cat:"glp1",icon:"🧪",name:"Tirzepatide",conc:"10mg / vial",purity:"≥98%",form:"GLP-2R",price:115.00,badge:"hot",cas:"2023788-19-2"},
-{id:6,cat:"glp1",icon:"🧪",name:"Tirzepatide",conc:"15mg / vial",purity:"≥98%",form:"GLP-2R",price:155.00,badge:"",cas:"2023788-19-2"},
-{id:7,cat:"glp1",icon:"🧪",name:"Retatrutide",conc:"5mg / vial",purity:"≥97%",form:"GLP-3R",price:90.00,badge:"",cas:"2381089-83-2"},
-{id:8,cat:"glp1",icon:"🧪",name:"Retatrutide",conc:"10mg / vial",purity:"≥97%",form:"GLP-3R",price:130.00,badge:"new",cas:"2381089-83-2"},
-{id:9,cat:"glp1",icon:"🧪",name:"Retatrutide",conc:"15mg / vial",purity:"≥97%",form:"GLP-3R",price:170.00,badge:"",cas:"2381089-83-2"},
-{id:10,cat:"peptides",icon:"🔬",name:"Copper (GHK-Cu)",conc:"50mg / vial",purity:"≥99%",form:"GHK-Cu",price:45.00,badge:"",cas:"49557-75-7"},
-{id:11,cat:"peptides",icon:"🔬",name:"Copper (GHK-Cu)",conc:"100mg / vial",purity:"≥99%",form:"GHK-Cu",price:75.00,badge:"",cas:"49557-75-7"},
-{id:12,cat:"other",icon:"💧",name:"Bacteriostatic Water",conc:"10ml / vial",purity:"USP",form:"BAC",price:38.00,badge:"",cas:"7732-18-5"},
-{id:13,cat:"peptides",icon:"🔬",name:"Mots-C",conc:"10mg / vial",purity:"≥98%",form:"MS10",price:55.00,badge:"",cas:"1627580-64-6"},
-{id:14,cat:"peptides",icon:"🧬",name:"Selank",conc:"10mg / vial",purity:"≥98%",form:"SK10",price:55.00,badge:"",cas:"129954-34-3"},
-{id:15,cat:"other",icon:"⚗️",name:"NAD+",conc:"500mg / vial",purity:"≥99%",form:"NJ500",price:150.00,badge:"hot",cas:"53-84-9"},
-{id:16,cat:"peptides",icon:"🧬",name:"5-Amino-1MQ",conc:"10mg / vial",purity:"≥98%",form:"5-AD",price:75.00,badge:"new",cas:"42464-85-1"},
+{id:1,cat:"serums",icon:"✨",name:"Glow Vitamin C Serum",conc:"30ml / bottle",purity:"Pure",form:"Serum",price:25.00,badge:"hot"},
+{id:2,cat:"moisturizers",icon:"💧",name:"Hydra-Boost Moisturizer",conc:"50ml / jar",purity:"Pure",form:"Cream",price:30.00,badge:""},
+{id:3,cat:"serums",icon:"🌙",name:"Night Repair Retinol",conc:"30ml / bottle",purity:"Pure",form:"Serum",price:35.00,badge:"new"},
+{id:4,cat:"cleansers",icon:"🧼",name:"Gentle Foaming Cleanser",conc:"150ml / bottle",purity:"Pure",form:"Foam",price:18.00,badge:""},
+{id:5,cat:"serums",icon:"🌿",name:"Hyaluronic Acid B5",conc:"30ml / bottle",purity:"Pure",form:"Serum",price:22.00,badge:""},
+{id:6,cat:"moisturizers",icon:"☀️",name:"Daily SPF 50+",conc:"50ml / tube",purity:"Pure",form:"Lotion",price:28.00,badge:"hot"},
 ]};
 
 const tg=window.Telegram?.WebApp;
@@ -339,7 +318,6 @@ async function placeOrder(){
   }
   if(!items.length)return;
 
-  // Disable checkout button while processing
   const btn=document.querySelector('.checkout-btn');
   if(btn){btn.disabled=true;btn.textContent='Processing...';}
 
@@ -364,7 +342,6 @@ async function placeOrder(){
       haptic('success');
       closeSheet();
       showToast('Redirecting to secure checkout...');
-      // Open Stripe checkout — works in Telegram Mini App
       setTimeout(()=>window.open(data.url,'_blank'),500);
     }
   }catch(err){
@@ -381,9 +358,8 @@ function checkPaymentReturn(){
     const orderId=params.get('order_id');
     haptic('success');
     showToast('✅ Payment confirmed! Your order is being processed.',5000);
-    // Add a local order record for the orders page
     const order={
-      id:'RR-'+Date.now().toString(36).toUpperCase(),
+      id:'RL-'+Date.now().toString(36).toUpperCase(),
       items:[{name:'Order #'+orderId,conc:'',qty:1,price:0}],
       total:0,
       date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),
@@ -391,9 +367,7 @@ function checkPaymentReturn(){
       stripeOrderId:orderId,
     };
     S.orders.unshift(order);
-    // Clear URL params
     window.history.replaceState({},'',window.location.pathname);
-    // Switch to orders page
     setTimeout(()=>{S.page='orders';render();},1000);
   }else if(params.get('payment')==='cancelled'){
     showToast('Order cancelled. Your cart is still saved.');
@@ -415,11 +389,6 @@ function toggleChat(){
 
 function handleChatKey(e){
   if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChatMessage();}
-}
-
-function sendSuggestion(text){
-  document.getElementById('chatInput').value=text;
-  sendChatMessage();
 }
 
 function appendChatMsg(role,text){
@@ -455,7 +424,6 @@ async function sendChatMessage(){
   input.value='';
   input.style.height='auto';
   document.getElementById('chatSendBtn').disabled=true;
-  document.getElementById('chatSuggestions').style.display='none';
 
   appendChatMsg('user',text);
   chatHistory.push({role:'user',content:text});
@@ -471,10 +439,8 @@ async function sendChatMessage(){
     });
 
     hideTyping();
-
     if(!res.ok)throw new Error('Chat unavailable');
 
-    // Stream the response
     const reader=res.body.getReader();
     const decoder=new TextDecoder();
     let botMsg=appendChatMsg('bot','');
@@ -484,11 +450,9 @@ async function sendChatMessage(){
       const{done,value}=await reader.read();
       if(done)break;
       const chunk=decoder.decode(value,{stream:true});
-      // Parse SSE data lines
       const lines=chunk.split('\n');
       for(const line of lines){
         if(line.startsWith('0:"')){
-          // Extract text from stream format: 0:"text"
           try{
             const jsonStr=line.slice(2);
             const parsed=JSON.parse(jsonStr);
@@ -503,7 +467,7 @@ async function sendChatMessage(){
     if(fullText){
       chatHistory.push({role:'assistant',content:fullText});
     }else{
-      botMsg.textContent='I\'m here to help! Ask me about our peptide products.';
+      botMsg.textContent='I\'m here to help! Ask me about our beauty products.';
     }
   }catch(err){
     hideTyping();
@@ -519,15 +483,15 @@ async function sendChatMessage(){
 function render(){
 if(!S.ageVerified){document.getElementById('app').innerHTML=`
 <div class="age-gate">
-  <div class="age-gate-brand"><div class="age-gate-shield">🧬</div><div class="age-gate-logo-text"><div class="name">Rapid <span>Research</span></div><div class="sub">Peptide Supply</div></div></div>
+  <div class="age-gate-brand"><div class="age-gate-shield">✨</div><div class="age-gate-logo-text"><div class="name">Rapid <span>Labs</span></div><div class="sub">Beauty & Skincare</div></div></div>
   <div class="age-gate-divider"></div>
-  <div class="age-gate-icon">🔬</div>
-  <div class="age-gate-title">Research Verification</div>
-  <div class="age-gate-text">All products are sold strictly for laboratory and research purposes only. Please confirm the following to continue.</div>
+  <div class="age-gate-icon">💄</div>
+  <div class="age-gate-title">Welcome to Rapid Labs</div>
+  <div class="age-gate-text">Premium skincare solutions for radiant skin. Please confirm the following to continue.</div>
   <div class="age-gate-checks">
-    <div class="age-check" onclick="toggleAgeCheck(0)"><div class="check-box ${S.ageChecks[0]?'checked':''}"></div><span class="check-label">I am at least <strong>21 years of age</strong></span></div>
-    <div class="age-check" onclick="toggleAgeCheck(1)"><div class="check-box ${S.ageChecks[1]?'checked':''}"></div><span class="check-label">I will use products for <strong>laboratory research only</strong>, not for human consumption</span></div>
-    <div class="age-check" onclick="toggleAgeCheck(2)"><div class="check-box ${S.ageChecks[2]?'checked':''}"></div><span class="check-label">I agree to the <strong>Terms & Conditions</strong> of Rapid Research Co.</span></div>
+    <div class="age-check" onclick="toggleAgeCheck(0)"><div class="check-box ${S.ageChecks[0]?'checked':''}"></div><span class="check-label">I am at least <strong>18 years of age</strong></span></div>
+    <div class="age-check" onclick="toggleAgeCheck(1)"><div class="check-box ${S.ageChecks[1]?'checked':''}"></div><span class="check-label">I agree to the <strong>Terms & Conditions</strong> of Rapid Labs Beauty.</span></div>
+    <div class="age-check" onclick="toggleAgeCheck(2)"><div class="check-box ${S.ageChecks[2]?'checked':''}"></div><span class="check-label">I want to see <strong>exclusive beauty offers</strong>.</span></div>
   </div>
   <button class="age-enter-btn ${S.ageChecks.every(Boolean)?'enabled':''}" onclick="enterShop()">Enter Store</button>
 </div>`;return;}
@@ -539,30 +503,28 @@ const ac=SHOP.categories.find(c=>c.id===S.category);
 let page='';
 if(S.page==='shop'){
 page=`<div class="banner"><div class="banner-hex"></div><div class="banner-glow-o"></div><div class="banner-glow-b"></div>
-<div class="banner-top"><div class="brand-row"><div class="brand-shield">🧬</div><div class="brand-text"><div class="b-name">Rapid <span>Research</span></div><div class="b-tag">${SHOP.tagline}</div></div></div><div class="live-badge"><div class="pulse-dot"></div>In Stock</div></div>
-<div class="banner-stats"><div class="stat-chip"><div class="stat-value orange">≥98%</div><div class="stat-label">Purity</div></div><div class="stat-chip"><div class="stat-value blue">24HR</div><div class="stat-label">Ship Time</div></div><div class="stat-chip"><div class="stat-value orange">COA</div><div class="stat-label">Verified</div></div></div></div>
+<div class="banner-top"><div class="brand-row"><div class="brand-shield">✨</div><div class="brand-text"><div class="b-name">Rapid <span>Labs</span></div><div class="b-tag">${SHOP.tagline}</div></div></div><div class="live-badge"><div class="pulse-dot"></div>In Stock</div></div>
+<div class="banner-stats"><div class="stat-chip"><div class="stat-value pink">Pure</div><div class="stat-label">Quality</div></div><div class="stat-chip"><div class="stat-value blue">Fast</div><div class="stat-label">Shipping</div></div><div class="stat-chip"><div class="stat-value pink">Eco</div><div class="stat-label">Friendly</div></div></div></div>
 <div class="categories">${SHOP.categories.map(c=>`<button class="cat-pill ${c.id===S.category?'active':''}" onclick="setCategory('${c.id}')">${c.name}</button>`).join('')}</div>
 <div class="section-header"><div class="section-title">${ac?.name||'All Products'}</div><div class="section-count">${prods.length} item${prods.length!==1?'s':''}</div></div>
-<div class="products-grid">${prods.map(p=>{const qty=S.cart[p.id]||0;const bc=p.badge==='new'?'badge-new':p.badge==='hot'?'badge-hot':'';const bl=p.badge==='new'?'NEW':p.badge==='hot'?'POPULAR':'';const badge=bl?`<div class="product-badge ${bc}">${bl}</div>`:'';const ctrl=qty>0?`<div class="qty-control"><button class="qty-btn" onclick="event.stopPropagation();removeFromCart(${p.id})">−</button><span class="qty-value">${qty}</span><button class="qty-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button></div>`:`<button class="add-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button>`;return`<div class="product-card"><div class="product-visual">${badge}<span class="product-icon">${p.icon}</span><span class="product-form-tag">${p.form}</span></div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-conc">${p.conc}</div><div class="product-purity">Purity: ${p.purity}</div><div class="product-bottom"><div class="product-price"><span class="dollar">$</span>${p.price.toFixed(2)}</div>${ctrl}</div></div></div>`;}).join('')}</div>`;
+<div class="products-grid">${prods.map(p=>{const qty=S.cart[p.id]||0;const bc=p.badge==='new'?'badge-new':p.badge==='hot'?'badge-hot':'';const bl=p.badge==='new'?'NEW':p.badge==='hot'?'POPULAR':'';const badge=bl?`<div class="product-badge ${bc}">${bl}</div>`:'';const ctrl=qty>0?`<div class="qty-control"><button class="qty-btn" onclick="event.stopPropagation();removeFromCart(${p.id})">−</button><span class="qty-value">${qty}</span><button class="qty-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button></div>`:`<button class="add-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button>`;return`<div class="product-card"><div class="product-visual">${badge}<span class="product-icon">${p.icon}</span><span class="product-form-tag">${p.form}</span></div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-conc">${p.conc}</div><div class="product-purity">Quality: ${p.purity}</div><div class="product-bottom"><div class="product-price"><span class="dollar">$</span>${p.price.toFixed(2)}</div>${ctrl}</div></div></div>`;}).join('')}</div>`;
 }else if(S.page==='orders'){
 if(!S.orders.length)page=`<div class="orders-page"><div class="empty-orders"><div class="empty-orders-icon">📦</div><div class="empty-orders-title">No Orders Yet</div><div class="empty-orders-text">Your order history will appear here</div></div></div>`;
 else page=`<div class="orders-page">${S.orders.map(o=>{const sc=o.status==='processing'?'status-processing':o.status==='shipped'?'status-shipped':'status-delivered';const sl=o.status==='processing'?'⏳ Processing':o.status==='shipped'?'🚚 Shipped':'✅ Delivered';const fp=o.step===1?0:o.step===2?33:o.step===3?66:100;return`<div class="order-card"><div class="order-header"><div class="order-id">${o.id}</div><div class="order-date">${o.date}</div></div><div class="order-status ${sc}">${sl}</div><div class="tracking-steps"><div class="tracking-line"><div class="tracking-line-fill" style="width:${fp}%"></div></div>${['Confirmed','Shipped','In Transit','Delivered'].map((l,i)=>`<div class="tracking-step"><div class="step-dot ${o.step>=i+1?'done':''}"></div><div class="step-label ${o.step===i+1?'active':''}">${l}</div></div>`).join('')}</div><div class="order-items">${o.items.map(i=>`${i.name}${i.conc?' ('+i.conc+')':''} × ${i.qty}`).join('<br>')}</div><div class="order-total">${o.total>0?'$'+o.total.toFixed(2):'Paid via Stripe'}</div></div>`;}).join('')}</div>`;
 }else if(S.page==='info'){
 page=`<div class="info-page">
-<div class="info-card"><div class="info-card-title">🏢 About Rapid Research</div><div class="info-card-text"><strong>Accelerating Discovery with Uncompromised Purity.</strong><br><br>Every batch undergoes rigorous <strong>third-party HPLC and MS testing</strong> to ensure a minimum purity standard of <strong>99.9%</strong>. We provide transparent Certificates of Analysis because trust is built on data, not promises.</div></div>
-<div class="info-card"><div class="info-card-title">🚚 Shipping & Delivery</div><div class="info-card-text"><strong>Same-day dispatch</strong> on orders placed before 2PM CST.<br>Free shipping on orders over <strong>$150</strong>.<br>Standard shipping: <strong>$9.95</strong> flat rate.<br>Temperature-controlled packaging.</div></div>
-<div class="info-card"><div class="info-card-title">📋 Certificates of Analysis</div><div class="info-card-text">Every product ships with a <strong>COA</strong> verifying purity via independent HPLC testing. Also available at <strong>rapid-research.co</strong>.</div></div>
-<div class="info-card"><div class="info-card-title">⚠️ Terms of Service</div><div class="info-card-text">All products are sold for <strong>LABORATORY AND RESEARCH PURPOSES ONLY</strong>. Not for human consumption. Buyers must be <strong>21+</strong>.</div></div>
-<div class="info-card"><div class="info-card-title">💬 Contact</div><div class="info-card-text">Website: <strong>rapid-research.co</strong><br>Telegram: <strong>@RapidLabsSupportBot</strong><br>Mon–Fri, 9AM–6PM CST</div></div></div>`;
+<div class="info-card"><div class="info-card-title">🏢 About Rapid Labs Beauty</div><div class="info-card-text"><strong>Premium Skincare for Everyone.</strong><br><br>We focus on high-quality ingredients and sustainable practices to bring you the best in beauty. Our products are dermatologically tested and cruelty-free.</div></div>
+<div class="info-card"><div class="info-card-title">🚚 Shipping & Delivery</div><div class="info-card-text"><strong>Fast dispatch</strong> on all orders.<br>Free shipping on orders over <strong>$50</strong>.<br>Standard shipping: <strong>$5.95</strong> flat rate.</div></div>
+<div class="info-card"><div class="info-card-title">💬 Contact</div><div class="info-card-text">Telegram: <strong>@RapidLabsBot</strong><br>Mon–Fri, 9AM–6PM CST</div></div></div>`;
 }
 
 const ob=S.orders.length>0?` (${S.orders.length})`:'';
 let cartSheet='';
-if(S.cartSheetOpen){const items=Object.entries(S.cart).map(([id,qty])=>{const p=SHOP.products.find(x=>x.id===+id);return p?{...p,qty}:null;}).filter(Boolean);const ship=total>=150?0:9.95,grand=total+ship;
-cartSheet=`<div class="overlay" onclick="closeSheet()"></div><div class="sheet"><div class="sheet-handle"></div><div class="sheet-header"><div class="sheet-title">Your Order</div><button class="sheet-clear" onclick="clearCart()">Clear All</button></div>${items.map(i=>`<div class="cart-item"><span class="cart-item-icon">${i.icon}</span><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-meta">$${i.price.toFixed(2)} × ${i.qty} — ${i.conc}</div></div><div class="qty-control"><button class="qty-btn" onclick="removeFromCart(${i.id})">−</button><span class="qty-value">${i.qty}</span><button class="qty-btn" onclick="addToCart(${i.id})">+</button></div></div><div class="divider"></div>`).join('')}<div class="summary"><div class="summary-row"><span>Subtotal (${count} items)</span><span>$${total.toFixed(2)}</span></div><div class="summary-row"><span>Shipping</span><span style="color:${ship===0?'var(--success)':'var(--text)'};font-weight:600">${ship===0?'FREE':'$'+ship.toFixed(2)}</span></div>${total<150?`<div class="summary-row" style="color:var(--orange);font-size:11px">Add $${(150-total).toFixed(2)} more for free shipping</div>`:''}<div class="summary-row total"><span>Total</span><span>$${grand.toFixed(2)}</span></div></div><div class="disclaimer-box"><strong>⚠️ RESEARCH USE ONLY</strong> — All products for laboratory research exclusively. Not for human consumption.</div><button class="checkout-btn" onclick="placeOrder()">Pay Securely — $${grand.toFixed(2)}</button></div>`;}
+if(S.cartSheetOpen){const items=Object.entries(S.cart).map(([id,qty])=>{const p=SHOP.products.find(x=>x.id===+id);return p?{...p,qty}:null;}).filter(Boolean);const ship=total>=50?0:5.95,grand=total+ship;
+cartSheet=`<div class="overlay" onclick="closeSheet()"></div><div class="sheet"><div class="sheet-handle"></div><div class="sheet-header"><div class="sheet-title">Your Order</div><button class="sheet-clear" onclick="clearCart()">Clear All</button></div>${items.map(i=>`<div class="cart-item"><span class="cart-item-icon">${i.icon}</span><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-meta">$${i.price.toFixed(2)} × ${i.qty}</div></div><div class="qty-control"><button class="qty-btn" onclick="removeFromCart(${i.id})">−</button><span class="qty-value">${i.qty}</span><button class="qty-btn" onclick="addToCart(${i.id})">+</button></div></div><div class="divider"></div>`).join('')}<div class="summary"><div class="summary-row"><span>Subtotal (${count} items)</span><span>$${total.toFixed(2)}</span></div><div class="summary-row"><span>Shipping</span><span style="color:${ship===0?'var(--success)':'var(--text)'};font-weight:600">${ship===0?'FREE':'$'+ship.toFixed(2)}</span></div>${total<50?`<div class="summary-row" style="color:var(--pink);font-size:11px">Add $${(50-total).toFixed(2)} more for free shipping</div>`:''}<div class="summary-row total"><span>Total</span><span>$${grand.toFixed(2)}</span></div></div><button class="checkout-btn" onclick="placeOrder()">Pay Securely — $${grand.toFixed(2)}</button></div>`;}
 
 document.getElementById('app').innerHTML=`${page}
-<div class="nav-tabs"><button class="nav-tab ${S.page==='shop'?'active':''}" onclick="setPage('shop')">🧪 Shop</button><button class="nav-tab ${S.page==='orders'?'active':''}" onclick="setPage('orders')">📦 Orders${ob}</button><button class="nav-tab ${S.page==='info'?'active':''}" onclick="setPage('info')">ℹ️ Info</button></div>
+<div class="nav-tabs"><button class="nav-tab ${S.page==='shop'?'active':''}" onclick="setPage('shop')">✨ Shop</button><button class="nav-tab ${S.page==='orders'?'active':''}" onclick="setPage('orders')">📦 Orders${ob}</button><button class="nav-tab ${S.page==='info'?'active':''}" onclick="setPage('info')">ℹ️ Info</button></div>
 <div class="cart-bar ${count>0&&S.page==='shop'?'visible':''}"><button class="cart-button" onclick="openSheet()"><div class="cart-btn-left"><span class="cart-badge">${count}</span><span>View Order</span></div><span class="cart-total">$${total.toFixed(2)}</span></button></div>
 ${cartSheet}`;}
 

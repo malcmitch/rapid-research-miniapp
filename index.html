@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -169,6 +169,7 @@
   .disclaimer-box strong { color:var(--orange);font-weight:700; }
   .checkout-btn { margin:12px 20px 0;width:calc(100% - 40px);padding:15px;border:none;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--orange),var(--orange-bright));color:#fff;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .15s ease;box-shadow:0 4px 20px var(--orange-glow); }
   .checkout-btn:active { transform:scale(.98);opacity:.9; }
+  .checkout-btn:disabled { opacity:.5;pointer-events:none; }
 
   /* ORDERS */
   .orders-page { padding:16px; }
@@ -207,44 +208,106 @@
   @keyframes fadeInUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
   .product-card { animation:fadeInUp .35s ease backwards; }
   .product-card:nth-child(1){animation-delay:0s} .product-card:nth-child(2){animation-delay:.04s} .product-card:nth-child(3){animation-delay:.08s} .product-card:nth-child(4){animation-delay:.12s} .product-card:nth-child(5){animation-delay:.16s} .product-card:nth-child(6){animation-delay:.2s}
+
+  /* TOAST */
+  .toast { position:fixed;bottom:130px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a2d5a;border:1px solid rgba(244,121,32,.3);color:#fff;padding:10px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:9999;opacity:0;transition:all .3s ease;white-space:nowrap;pointer-events:none; }
+  .toast.show { opacity:1;transform:translateX(-50%) translateY(0); }
+
+  /* AI CHAT WIDGET */
+  .chat-fab { position:fixed;bottom:130px;right:16px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--navy-mid),var(--blue-accent));border:1.5px solid rgba(77,163,232,.3);box-shadow:0 4px 20px rgba(46,123,196,.3);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:900;transition:all .2s ease; }
+  .chat-fab:active { transform:scale(.92); }
+  .chat-fab .chat-badge { position:absolute;top:-2px;right:-2px;width:14px;height:14px;border-radius:50%;background:var(--orange);border:2px solid var(--bg);display:none; }
+  .chat-fab .chat-badge.show { display:block; }
+  .chat-panel { position:fixed;bottom:0;left:0;right:0;height:75vh;background:var(--navy);border-radius:20px 20px 0 0;border-top:1px solid rgba(77,163,232,.2);z-index:3000;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column; }
+  .chat-panel.open { transform:translateY(0); }
+  .chat-panel-header { display:flex;align-items:center;justify-content:space-between;padding:14px 18px 10px;border-bottom:1px solid var(--border); }
+  .chat-panel-title { display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700; }
+  .chat-panel-title .ai-dot { width:8px;height:8px;border-radius:50%;background:var(--blue-bright);animation:pulse 2s infinite; }
+  .chat-close { background:none;border:none;color:var(--hint);font-size:20px;cursor:pointer;padding:4px;line-height:1; }
+  .chat-messages { flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px; }
+  .chat-msg { max-width:85%;padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.5;animation:fadeInUp .2s ease; }
+  .chat-msg.bot { background:var(--surface);color:var(--text);border-bottom-left-radius:4px;align-self:flex-start; }
+  .chat-msg.user { background:linear-gradient(135deg,var(--blue-accent),#2563b0);color:#fff;border-bottom-right-radius:4px;align-self:flex-end; }
+  .chat-msg.typing { background:var(--surface);align-self:flex-start;padding:12px 16px; }
+  .typing-dots { display:flex;gap:4px;align-items:center; }
+  .typing-dots span { width:6px;height:6px;border-radius:50%;background:var(--hint);animation:typingBounce 1.2s infinite; }
+  .typing-dots span:nth-child(2) { animation-delay:.2s; }
+  .typing-dots span:nth-child(3) { animation-delay:.4s; }
+  @keyframes typingBounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+  .chat-input-row { display:flex;gap:8px;padding:12px 16px;padding-bottom:max(12px,env(safe-area-inset-bottom));border-top:1px solid var(--border); }
+  .chat-input { flex:1;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text);font-size:14px;font-family:inherit;outline:none;resize:none; }
+  .chat-input:focus { border-color:rgba(77,163,232,.4); }
+  .chat-send-btn { width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--blue-accent),#2563b0);border:none;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s ease;align-self:flex-end; }
+  .chat-send-btn:active { transform:scale(.92); }
+  .chat-send-btn:disabled { opacity:.4;pointer-events:none; }
+  .chat-suggestions { display:flex;gap:6px;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none; }
+  .chat-suggestions::-webkit-scrollbar { display:none; }
+  .chat-suggestion { flex-shrink:0;padding:6px 12px;border-radius:20px;border:1px solid rgba(77,163,232,.25);background:transparent;color:var(--blue-bright);font-size:11px;font-weight:500;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s ease; }
+  .chat-suggestion:active { background:rgba(46,123,196,.15); }
 </style>
 </head>
 <body>
 <div id="app"></div>
+<div class="toast" id="toast"></div>
+
+<!-- AI Chat Widget -->
+<div class="chat-fab" id="chatFab" onclick="toggleChat()">
+  💬
+  <div class="chat-badge" id="chatBadge"></div>
+</div>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-panel-header">
+    <div class="chat-panel-title">
+      <div class="ai-dot"></div>
+      AI Support
+    </div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-suggestions" id="chatSuggestions">
+    <button class="chat-suggestion" onclick="sendSuggestion('What GLP-1 peptides do you carry?')">GLP-1 products?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion('What is the purity of your Semaglutide?')">Semaglutide purity?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion('How long does shipping take?')">Shipping time?</button>
+    <button class="chat-suggestion" onclick="sendSuggestion('Do you provide a Certificate of Analysis?')">COA available?</button>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot">👋 Hi! I'm your Rapid Research AI assistant. Ask me anything about our peptide products, purity, shipping, or how to place an order!</div>
+  </div>
+  <div class="chat-input-row">
+    <textarea class="chat-input" id="chatInput" placeholder="Ask about products, shipping, purity..." rows="1" onkeydown="handleChatKey(event)"></textarea>
+    <button class="chat-send-btn" id="chatSendBtn" onclick="sendChatMessage()">➤</button>
+  </div>
+</div>
+
 <script>
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+// Replace with your deployed Manus backend URL after publishing
+const API_BASE = 'MANUS_API_URL_PLACEHOLDER';
+
 const SHOP={name:"Rapid Research",tagline:"PEPTIDE RESEARCH SUPPLY",currency:"$",
 categories:[{id:"all",name:"All"},{id:"glp1",name:"GLP-1"},{id:"peptides",name:"Peptides"},{id:"other",name:"Other"}],
 products:[
-// Semaglutide (GLP-1S)
 {id:1,cat:"glp1",icon:"🧪",name:"Semaglutide",conc:"5mg / vial",purity:"≥98%",form:"GLP-1S",price:85.00,badge:"",cas:"910463-68-2"},
 {id:2,cat:"glp1",icon:"🧪",name:"Semaglutide",conc:"10mg / vial",purity:"≥98%",form:"GLP-1S",price:125.00,badge:"hot",cas:"910463-68-2"},
 {id:3,cat:"glp1",icon:"🧪",name:"Semaglutide",conc:"15mg / vial",purity:"≥98%",form:"GLP-1S",price:165.00,badge:"",cas:"910463-68-2"},
-// Tirzepatide (GLP-TR / GLP-2R)
 {id:4,cat:"glp1",icon:"🧪",name:"Tirzepatide",conc:"5mg / vial",purity:"≥98%",form:"GLP-TR",price:75.00,badge:"",cas:"2023788-19-2"},
 {id:5,cat:"glp1",icon:"🧪",name:"Tirzepatide",conc:"10mg / vial",purity:"≥98%",form:"GLP-2R",price:115.00,badge:"hot",cas:"2023788-19-2"},
 {id:6,cat:"glp1",icon:"🧪",name:"Tirzepatide",conc:"15mg / vial",purity:"≥98%",form:"GLP-2R",price:155.00,badge:"",cas:"2023788-19-2"},
-// Retatrutide (GLP-3R)
 {id:7,cat:"glp1",icon:"🧪",name:"Retatrutide",conc:"5mg / vial",purity:"≥97%",form:"GLP-3R",price:90.00,badge:"",cas:"2381089-83-2"},
 {id:8,cat:"glp1",icon:"🧪",name:"Retatrutide",conc:"10mg / vial",purity:"≥97%",form:"GLP-3R",price:130.00,badge:"new",cas:"2381089-83-2"},
 {id:9,cat:"glp1",icon:"🧪",name:"Retatrutide",conc:"15mg / vial",purity:"≥97%",form:"GLP-3R",price:170.00,badge:"",cas:"2381089-83-2"},
-// Copper / GHK-Cu
 {id:10,cat:"peptides",icon:"🔬",name:"Copper (GHK-Cu)",conc:"50mg / vial",purity:"≥99%",form:"GHK-Cu",price:45.00,badge:"",cas:"49557-75-7"},
 {id:11,cat:"peptides",icon:"🔬",name:"Copper (GHK-Cu)",conc:"100mg / vial",purity:"≥99%",form:"GHK-Cu",price:75.00,badge:"",cas:"49557-75-7"},
-// Bacteriostatic Water
 {id:12,cat:"other",icon:"💧",name:"Bacteriostatic Water",conc:"10ml / vial",purity:"USP",form:"BAC",price:38.00,badge:"",cas:"7732-18-5"},
-// Mots-C
 {id:13,cat:"peptides",icon:"🔬",name:"Mots-C",conc:"10mg / vial",purity:"≥98%",form:"MS10",price:55.00,badge:"",cas:"1627580-64-6"},
-// Selank
 {id:14,cat:"peptides",icon:"🧬",name:"Selank",conc:"10mg / vial",purity:"≥98%",form:"SK10",price:55.00,badge:"",cas:"129954-34-3"},
-// NAD+
 {id:15,cat:"other",icon:"⚗️",name:"NAD+",conc:"500mg / vial",purity:"≥99%",form:"NJ500",price:150.00,badge:"hot",cas:"53-84-9"},
-// 5-Amino-1MQ
 {id:16,cat:"peptides",icon:"🧬",name:"5-Amino-1MQ",conc:"10mg / vial",purity:"≥98%",form:"5-AD",price:75.00,badge:"new",cas:"42464-85-1"},
 ]};
 
 const tg=window.Telegram?.WebApp;
 let S={ageVerified:false,ageChecks:[false,false,false],page:'shop',category:'all',cart:{},cartSheetOpen:false,orders:[]};
 
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
 function haptic(t){try{if(t==='light')tg?.HapticFeedback?.impactOccurred('light');else if(t==='medium')tg?.HapticFeedback?.impactOccurred('medium');else if(t==='success')tg?.HapticFeedback?.notificationOccurred('success');else if(t==='sel')tg?.HapticFeedback?.selectionChanged();}catch(e){}}
 function cartTotal(){let t=0;for(const[id,qty]of Object.entries(S.cart)){const p=SHOP.products.find(x=>x.id===+id);if(p)t+=p.price*qty;}return t;}
 function cartCount(){return Object.values(S.cart).reduce((s,q)=>s+q,0);}
@@ -257,8 +320,201 @@ function openSheet(){S.cartSheetOpen=true;render();requestAnimationFrame(()=>{do
 function closeSheet(){document.querySelector('.overlay')?.classList.remove('visible');document.querySelector('.sheet')?.classList.remove('visible');setTimeout(()=>{S.cartSheetOpen=false;render();},350);}
 function toggleAgeCheck(i){S.ageChecks[i]=!S.ageChecks[i];haptic('sel');render();}
 function enterShop(){if(S.ageChecks.every(Boolean)){S.ageVerified=true;haptic('success');render();}}
-function placeOrder(){const items=[];for(const[id,qty]of Object.entries(S.cart)){const p=SHOP.products.find(x=>x.id===+id);if(p)items.push({id:p.id,name:p.name,qty,price:p.price,conc:p.conc});}const order={id:'RR-'+Date.now().toString(36).toUpperCase(),items,total:cartTotal(),date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),status:'processing',step:1};S.orders.unshift(order);haptic('success');try{if(tg?.sendData)tg.sendData(JSON.stringify({...order,currency:SHOP.currency,timestamp:new Date().toISOString()}));}catch(e){}setTimeout(()=>{order.status='shipped';order.step=2;render();},8000);setTimeout(()=>{order.step=3;render();},16000);setTimeout(()=>{order.status='delivered';order.step=4;render();},25000);S.cart={};closeSheet();setTimeout(()=>{S.page='orders';render();window.scrollTo(0,0);},400);}
 
+function showToast(msg, duration=3000){
+  const t=document.getElementById('toast');
+  if(!t)return;
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),duration);
+}
+
+// ─── STRIPE CHECKOUT ─────────────────────────────────────────────────────────
+async function placeOrder(){
+  const items=[];
+  for(const[id,qty]of Object.entries(S.cart)){
+    const p=SHOP.products.find(x=>x.id===+id);
+    if(p)items.push({id:p.id,name:p.name,conc:p.conc,price:p.price,qty});
+  }
+  if(!items.length)return;
+
+  // Disable checkout button while processing
+  const btn=document.querySelector('.checkout-btn');
+  if(btn){btn.disabled=true;btn.textContent='Processing...';}
+
+  try{
+    const res=await fetch(`${API_BASE}/api/checkout/create`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        items,
+        customerName: tg?.initDataUnsafe?.user?.first_name || 'Customer',
+        origin: window.location.origin,
+      }),
+    });
+
+    if(!res.ok){
+      const err=await res.json().catch(()=>({}));
+      throw new Error(err.error||'Checkout failed');
+    }
+
+    const data=await res.json();
+    if(data.url){
+      haptic('success');
+      closeSheet();
+      showToast('Redirecting to secure checkout...');
+      // Open Stripe checkout — works in Telegram Mini App
+      setTimeout(()=>window.open(data.url,'_blank'),500);
+    }
+  }catch(err){
+    console.error('Checkout error:',err);
+    showToast('⚠️ Checkout unavailable. Please try again.');
+    if(btn){btn.disabled=false;btn.textContent=`Place Order — $${(cartTotal()+Math.max(0,150-cartTotal()>0?9.95:0)).toFixed(2)}`;}
+  }
+}
+
+// ─── PAYMENT SUCCESS HANDLER ─────────────────────────────────────────────────
+function checkPaymentReturn(){
+  const params=new URLSearchParams(window.location.search);
+  if(params.get('payment')==='success'){
+    const orderId=params.get('order_id');
+    haptic('success');
+    showToast('✅ Payment confirmed! Your order is being processed.',5000);
+    // Add a local order record for the orders page
+    const order={
+      id:'RR-'+Date.now().toString(36).toUpperCase(),
+      items:[{name:'Order #'+orderId,conc:'',qty:1,price:0}],
+      total:0,
+      date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),
+      status:'processing',step:1,
+      stripeOrderId:orderId,
+    };
+    S.orders.unshift(order);
+    // Clear URL params
+    window.history.replaceState({},'',window.location.pathname);
+    // Switch to orders page
+    setTimeout(()=>{S.page='orders';render();},1000);
+  }else if(params.get('payment')==='cancelled'){
+    showToast('Order cancelled. Your cart is still saved.');
+    window.history.replaceState({},'',window.location.pathname);
+  }
+}
+
+// ─── AI CHAT ─────────────────────────────────────────────────────────────────
+let chatOpen=false;
+let chatHistory=[];
+let chatLoading=false;
+
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatPanel').classList.toggle('open',chatOpen);
+  document.getElementById('chatBadge').classList.remove('show');
+  if(chatOpen)document.getElementById('chatInput').focus();
+}
+
+function handleChatKey(e){
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChatMessage();}
+}
+
+function sendSuggestion(text){
+  document.getElementById('chatInput').value=text;
+  sendChatMessage();
+}
+
+function appendChatMsg(role,text){
+  const msgs=document.getElementById('chatMessages');
+  const div=document.createElement('div');
+  div.className='chat-msg '+(role==='user'?'user':'bot');
+  div.textContent=text;
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+  return div;
+}
+
+function showTyping(){
+  const msgs=document.getElementById('chatMessages');
+  const div=document.createElement('div');
+  div.className='chat-msg typing';
+  div.id='typingIndicator';
+  div.innerHTML='<div class="typing-dots"><span></span><span></span><span></span></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function hideTyping(){
+  document.getElementById('typingIndicator')?.remove();
+}
+
+async function sendChatMessage(){
+  if(chatLoading)return;
+  const input=document.getElementById('chatInput');
+  const text=input.value.trim();
+  if(!text)return;
+
+  input.value='';
+  input.style.height='auto';
+  document.getElementById('chatSendBtn').disabled=true;
+  document.getElementById('chatSuggestions').style.display='none';
+
+  appendChatMsg('user',text);
+  chatHistory.push({role:'user',content:text});
+
+  chatLoading=true;
+  showTyping();
+
+  try{
+    const res=await fetch(`${API_BASE}/api/chat`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:chatHistory}),
+    });
+
+    hideTyping();
+
+    if(!res.ok)throw new Error('Chat unavailable');
+
+    // Stream the response
+    const reader=res.body.getReader();
+    const decoder=new TextDecoder();
+    let botMsg=appendChatMsg('bot','');
+    let fullText='';
+
+    while(true){
+      const{done,value}=await reader.read();
+      if(done)break;
+      const chunk=decoder.decode(value,{stream:true});
+      // Parse SSE data lines
+      const lines=chunk.split('\n');
+      for(const line of lines){
+        if(line.startsWith('0:"')){
+          // Extract text from stream format: 0:"text"
+          try{
+            const jsonStr=line.slice(2);
+            const parsed=JSON.parse(jsonStr);
+            fullText+=parsed;
+            botMsg.textContent=fullText;
+            document.getElementById('chatMessages').scrollTop=document.getElementById('chatMessages').scrollHeight;
+          }catch(e){}
+        }
+      }
+    }
+
+    if(fullText){
+      chatHistory.push({role:'assistant',content:fullText});
+    }else{
+      botMsg.textContent='I\'m here to help! Ask me about our peptide products.';
+    }
+  }catch(err){
+    hideTyping();
+    appendChatMsg('bot','Sorry, I\'m having trouble connecting right now. Please try again in a moment!');
+  }
+
+  chatLoading=false;
+  document.getElementById('chatSendBtn').disabled=false;
+  input.focus();
+}
+
+// ─── RENDER ───────────────────────────────────────────────────────────────────
 function render(){
 if(!S.ageVerified){document.getElementById('app').innerHTML=`
 <div class="age-gate">
@@ -289,27 +545,31 @@ page=`<div class="banner"><div class="banner-hex"></div><div class="banner-glow-
 <div class="products-grid">${prods.map(p=>{const qty=S.cart[p.id]||0;const bc=p.badge==='new'?'badge-new':p.badge==='hot'?'badge-hot':'';const bl=p.badge==='new'?'NEW':p.badge==='hot'?'POPULAR':'';const badge=bl?`<div class="product-badge ${bc}">${bl}</div>`:'';const ctrl=qty>0?`<div class="qty-control"><button class="qty-btn" onclick="event.stopPropagation();removeFromCart(${p.id})">−</button><span class="qty-value">${qty}</span><button class="qty-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button></div>`:`<button class="add-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button>`;return`<div class="product-card"><div class="product-visual">${badge}<span class="product-icon">${p.icon}</span><span class="product-form-tag">${p.form}</span></div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-conc">${p.conc}</div><div class="product-purity">Purity: ${p.purity}</div><div class="product-bottom"><div class="product-price"><span class="dollar">$</span>${p.price.toFixed(2)}</div>${ctrl}</div></div></div>`;}).join('')}</div>`;
 }else if(S.page==='orders'){
 if(!S.orders.length)page=`<div class="orders-page"><div class="empty-orders"><div class="empty-orders-icon">📦</div><div class="empty-orders-title">No Orders Yet</div><div class="empty-orders-text">Your order history will appear here</div></div></div>`;
-else page=`<div class="orders-page">${S.orders.map(o=>{const sc=o.status==='processing'?'status-processing':o.status==='shipped'?'status-shipped':'status-delivered';const sl=o.status==='processing'?'⏳ Processing':o.status==='shipped'?'🚚 Shipped':'✅ Delivered';const fp=o.step===1?0:o.step===2?33:o.step===3?66:100;return`<div class="order-card"><div class="order-header"><div class="order-id">${o.id}</div><div class="order-date">${o.date}</div></div><div class="order-status ${sc}">${sl}</div><div class="tracking-steps"><div class="tracking-line"><div class="tracking-line-fill" style="width:${fp}%"></div></div>${['Confirmed','Shipped','In Transit','Delivered'].map((l,i)=>`<div class="tracking-step"><div class="step-dot ${o.step>=i+1?'done':''}"></div><div class="step-label ${o.step===i+1?'active':''}">${l}</div></div>`).join('')}</div><div class="order-items">${o.items.map(i=>`${i.name} (${i.conc}) × ${i.qty}`).join('<br>')}</div><div class="order-total">$${o.total.toFixed(2)}</div></div>`;}).join('')}</div>`;
+else page=`<div class="orders-page">${S.orders.map(o=>{const sc=o.status==='processing'?'status-processing':o.status==='shipped'?'status-shipped':'status-delivered';const sl=o.status==='processing'?'⏳ Processing':o.status==='shipped'?'🚚 Shipped':'✅ Delivered';const fp=o.step===1?0:o.step===2?33:o.step===3?66:100;return`<div class="order-card"><div class="order-header"><div class="order-id">${o.id}</div><div class="order-date">${o.date}</div></div><div class="order-status ${sc}">${sl}</div><div class="tracking-steps"><div class="tracking-line"><div class="tracking-line-fill" style="width:${fp}%"></div></div>${['Confirmed','Shipped','In Transit','Delivered'].map((l,i)=>`<div class="tracking-step"><div class="step-dot ${o.step>=i+1?'done':''}"></div><div class="step-label ${o.step===i+1?'active':''}">${l}</div></div>`).join('')}</div><div class="order-items">${o.items.map(i=>`${i.name}${i.conc?' ('+i.conc+')':''} × ${i.qty}`).join('<br>')}</div><div class="order-total">${o.total>0?'$'+o.total.toFixed(2):'Paid via Stripe'}</div></div>`;}).join('')}</div>`;
 }else if(S.page==='info'){
 page=`<div class="info-page">
 <div class="info-card"><div class="info-card-title">🏢 About Rapid Research</div><div class="info-card-text"><strong>Accelerating Discovery with Uncompromised Purity.</strong><br><br>Every batch undergoes rigorous <strong>third-party HPLC and MS testing</strong> to ensure a minimum purity standard of <strong>99.9%</strong>. We provide transparent Certificates of Analysis because trust is built on data, not promises.</div></div>
 <div class="info-card"><div class="info-card-title">🚚 Shipping & Delivery</div><div class="info-card-text"><strong>Same-day dispatch</strong> on orders placed before 2PM CST.<br>Free shipping on orders over <strong>$150</strong>.<br>Standard shipping: <strong>$9.95</strong> flat rate.<br>Temperature-controlled packaging.</div></div>
 <div class="info-card"><div class="info-card-title">📋 Certificates of Analysis</div><div class="info-card-text">Every product ships with a <strong>COA</strong> verifying purity via independent HPLC testing. Also available at <strong>rapid-research.co</strong>.</div></div>
 <div class="info-card"><div class="info-card-title">⚠️ Terms of Service</div><div class="info-card-text">All products are sold for <strong>LABORATORY AND RESEARCH PURPOSES ONLY</strong>. Not for human consumption. Buyers must be <strong>21+</strong>.</div></div>
-<div class="info-card"><div class="info-card-title">💬 Contact</div><div class="info-card-text">Website: <strong>rapid-research.co</strong><br>Mon–Fri, 9AM–6PM CST</div></div></div>`;
+<div class="info-card"><div class="info-card-title">💬 Contact</div><div class="info-card-text">Website: <strong>rapid-research.co</strong><br>Telegram: <strong>@RapidLabsSupportBot</strong><br>Mon–Fri, 9AM–6PM CST</div></div></div>`;
 }
 
 const ob=S.orders.length>0?` (${S.orders.length})`:'';
 let cartSheet='';
 if(S.cartSheetOpen){const items=Object.entries(S.cart).map(([id,qty])=>{const p=SHOP.products.find(x=>x.id===+id);return p?{...p,qty}:null;}).filter(Boolean);const ship=total>=150?0:9.95,grand=total+ship;
-cartSheet=`<div class="overlay" onclick="closeSheet()"></div><div class="sheet"><div class="sheet-handle"></div><div class="sheet-header"><div class="sheet-title">Your Order</div><button class="sheet-clear" onclick="clearCart()">Clear All</button></div>${items.map(i=>`<div class="cart-item"><span class="cart-item-icon">${i.icon}</span><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-meta">$${i.price.toFixed(2)} × ${i.qty} — ${i.conc}</div></div><div class="qty-control"><button class="qty-btn" onclick="removeFromCart(${i.id})">−</button><span class="qty-value">${i.qty}</span><button class="qty-btn" onclick="addToCart(${i.id})">+</button></div></div><div class="divider"></div>`).join('')}<div class="summary"><div class="summary-row"><span>Subtotal (${count} items)</span><span>$${total.toFixed(2)}</span></div><div class="summary-row"><span>Shipping</span><span style="color:${ship===0?'var(--success)':'var(--text)'};font-weight:600">${ship===0?'FREE':'$'+ship.toFixed(2)}</span></div>${total<150?`<div class="summary-row" style="color:var(--orange);font-size:11px">Add $${(150-total).toFixed(2)} more for free shipping</div>`:''}<div class="summary-row total"><span>Total</span><span>$${grand.toFixed(2)}</span></div></div><div class="disclaimer-box"><strong>⚠️ RESEARCH USE ONLY</strong> — All products for laboratory research exclusively. Not for human consumption.</div><button class="checkout-btn" onclick="placeOrder()">Place Order — $${grand.toFixed(2)}</button></div>`;}
+cartSheet=`<div class="overlay" onclick="closeSheet()"></div><div class="sheet"><div class="sheet-handle"></div><div class="sheet-header"><div class="sheet-title">Your Order</div><button class="sheet-clear" onclick="clearCart()">Clear All</button></div>${items.map(i=>`<div class="cart-item"><span class="cart-item-icon">${i.icon}</span><div class="cart-item-info"><div class="cart-item-name">${i.name}</div><div class="cart-item-meta">$${i.price.toFixed(2)} × ${i.qty} — ${i.conc}</div></div><div class="qty-control"><button class="qty-btn" onclick="removeFromCart(${i.id})">−</button><span class="qty-value">${i.qty}</span><button class="qty-btn" onclick="addToCart(${i.id})">+</button></div></div><div class="divider"></div>`).join('')}<div class="summary"><div class="summary-row"><span>Subtotal (${count} items)</span><span>$${total.toFixed(2)}</span></div><div class="summary-row"><span>Shipping</span><span style="color:${ship===0?'var(--success)':'var(--text)'};font-weight:600">${ship===0?'FREE':'$'+ship.toFixed(2)}</span></div>${total<150?`<div class="summary-row" style="color:var(--orange);font-size:11px">Add $${(150-total).toFixed(2)} more for free shipping</div>`:''}<div class="summary-row total"><span>Total</span><span>$${grand.toFixed(2)}</span></div></div><div class="disclaimer-box"><strong>⚠️ RESEARCH USE ONLY</strong> — All products for laboratory research exclusively. Not for human consumption.</div><button class="checkout-btn" onclick="placeOrder()">Pay Securely — $${grand.toFixed(2)}</button></div>`;}
 
 document.getElementById('app').innerHTML=`${page}
 <div class="nav-tabs"><button class="nav-tab ${S.page==='shop'?'active':''}" onclick="setPage('shop')">🧪 Shop</button><button class="nav-tab ${S.page==='orders'?'active':''}" onclick="setPage('orders')">📦 Orders${ob}</button><button class="nav-tab ${S.page==='info'?'active':''}" onclick="setPage('info')">ℹ️ Info</button></div>
 <div class="cart-bar ${count>0&&S.page==='shop'?'visible':''}"><button class="cart-button" onclick="openSheet()"><div class="cart-btn-left"><span class="cart-badge">${count}</span><span>View Order</span></div><span class="cart-total">$${total.toFixed(2)}</span></button></div>
 ${cartSheet}`;}
 
-document.addEventListener('DOMContentLoaded',()=>{try{if(tg){tg.expand();tg.ready();tg.setHeaderColor('#0b1528');tg.setBackgroundColor('#0b1528');}}catch(e){}render();});
+document.addEventListener('DOMContentLoaded',()=>{
+  try{if(tg){tg.expand();tg.ready();tg.setHeaderColor('#0b1528');tg.setBackgroundColor('#0b1528');}}catch(e){}
+  checkPaymentReturn();
+  render();
+});
 </script>
 </body>
 </html>

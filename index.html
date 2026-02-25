@@ -281,7 +281,8 @@
 <script>
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 // Replace with your deployed Manus backend URL after publishing
-const API_BASE = 'MANUS_API_URL_PLACEHOLDER';
+// API endpoints are served from the same Vercel deployment
+const API_BASE = '';
 
 const SHOP={name:"Rapid Research",tagline:"PEPTIDE RESEARCH SUPPLY",currency:"$",
 categories:[{id:"all",name:"All"},{id:"glp1",name:"GLP-1"},{id:"peptides",name:"Peptides"},{id:"other",name:"Other"}],
@@ -343,7 +344,7 @@ async function placeOrder(){
   if(btn){btn.disabled=true;btn.textContent='Processing...';}
 
   try{
-    const res=await fetch(`${API_BASE}/api/checkout/create`,{
+    const res=await fetch(`${API_BASE}/api/checkout`,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({

@@ -1,0 +1,10 @@
+{
+  "name": "rapid-research-miniapp",
+  "version": "1.0.0",
+  "description": "Rapid Research Co — Peptide Research Supply Mini App",
+  "private": true,
+  "dependencies": {
+    "micro": "^10.0.1",
+    "stripe": "^17.7.0"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "functions": {
+    "api/webhook.js": {
+      "memory": 256
+    },
+    "api/checkout.js": {
+      "memory": 256
+    },
+    "api/chat.js": {
+      "memory": 256,
+      "maxDuration": 30
+    },
+    "api/telegram.js": {
+      "memory": 256,
+      "maxDuration": 30
+    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

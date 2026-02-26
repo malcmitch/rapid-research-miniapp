@@ -40,7 +40,7 @@ export default async function handler(req, res) {
   const stripe = new Stripe(stripeKey);
 
   try {
-    const { items, customerName, customerEmail, shippingAddress } = req.body;
+    const { items, customerName, customerEmail, shippingAddress, promoCode } = req.body;
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "items array is required" });
@@ -98,6 +98,7 @@ export default async function handler(req, res) {
         total_usd: items
           .reduce((s, i) => s + i.price * i.qty, 0)
           .toFixed(2),
+        promo_code: promoCode || "none",
         source: "telegram_mini_app",
       },
     });

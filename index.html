@@ -113,6 +113,18 @@
   .summary-row { display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary); }
   .summary-row.total { font-size:18px;font-weight:800;color:#fff;margin-top:6px;padding-top:12px;border-top:1px dashed var(--border); }
   .checkout-btn { width:100%;margin-top:24px;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--pink-bright));color:#fff;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit; }
+
+  /* SHIPPING FORM */
+  .shipping-section { margin-top:20px; }
+  .shipping-title { font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:6px; }
+  .shipping-grid { display:grid;gap:10px; }
+  .shipping-field { display:flex;flex-direction:column;gap:4px; }
+  .shipping-field label { font-size:10px;font-weight:600;color:var(--hint);text-transform:uppercase;letter-spacing:.8px; }
+  .shipping-input { background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border-color .15s ease;width:100%; }
+  .shipping-input:focus { border-color:rgba(255,102,0,.4); }
+  .shipping-input::placeholder { color:var(--hint); }
+  .shipping-row { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
+  .shipping-row-3 { display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px; }
   .orders-page { padding:16px; }
   .empty-orders { text-align:center;padding:60px 20px; }
   .empty-orders-icon { font-size:48px;margin-bottom:16px;opacity:.3; }
@@ -213,7 +225,7 @@ const SHOP={
   ]
 };
 const tg=window.Telegram?.WebApp;
-let S={ageVerified:false,ageChecks:[false,false,false],page:'shop',category:'all',cart:{},cartSheetOpen:false,orders:[]};
+let S={ageVerified:false,ageChecks:[false,false,false],page:'shop',category:'all',cart:{},cartSheetOpen:false,orders:[],shipping:{name:'',email:'',address:'',city:'',state:'',zip:'',country:'US'}};
 function haptic(t){try{if(t==='light')tg?.HapticFeedback?.impactOccurred('light');else if(t==='medium')tg?.HapticFeedback?.impactOccurred('medium');else if(t==='success')tg?.HapticFeedback?.notificationOccurred('success');else if(t==='sel')tg?.HapticFeedback?.selectionChanged();}catch(e){}}
 function cartTotal(){let t=0;for(const[id,qty]of Object.entries(S.cart)){const p=SHOP.products.find(x=>x.id===+id);if(p)t+=p.price*qty;}return t;}
 function cartCount(){return Object.values(S.cart).reduce((s,q)=>s+q,0);}
@@ -227,6 +239,9 @@ function closeSheet(){document.querySelector('.overlay')?.classList.remove('visi
 function toggleAgeCheck(i){S.ageChecks[i]=!S.ageChecks[i];haptic('sel');render();}
 function enterShop(){if(S.ageChecks.every(Boolean)){S.ageVerified=true;haptic('success');render();}}
 function showToast(msg,duration=3000){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),duration);}
+function updateShipping(field, value){ S.shipping[field]=value; }
+function shippingValid(){ const s=S.shipping; return s.name&&s.email&&s.address&&s.city&&s.state&&s.zip; }
+
 async function placeOrder(){
   const items=[];
   for(const[id,qty]of Object.entries(S.cart)){const p=SHOP.products.find(x=>x.id===+id);if(p)items.push({id:p.id,name:p.name,conc:p.conc,price:p.price,qty});}
@@ -234,7 +249,7 @@ async function placeOrder(){
   const btn=document.querySelector('.checkout-btn');
   if(btn){btn.disabled=true;btn.textContent='Processing...';}
   try{
-    const res=await fetch(`${API_BASE}/api/checkout`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,customerName:tg?.initDataUnsafe?.user?.first_name||'Customer',origin:window.location.origin})});
+    const res=await fetch(`${API_BASE}/api/checkout`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items,customerName:S.shipping.name||tg?.initDataUnsafe?.user?.first_name||'Customer',customerEmail:S.shipping.email,shippingAddress:S.shipping,origin:window.location.origin})});
     if(!res.ok){const err=await res.json().catch(()=>({}));throw new Error(err.error||'Checkout failed');}
     const data=await res.json();
     if(data.url){haptic('success');closeSheet();showToast('Redirecting to secure checkout...');setTimeout(()=>window.open(data.url,'_blank'),500);}
@@ -337,7 +352,40 @@ function render(){
       ${total<150?`<div class="summary-row" style="color:var(--pink);font-size:11px">Add $${(150-total).toFixed(2)} more for free shipping</div>`:''}
       <div class="summary-row total"><span>Total</span><span>$${grand.toFixed(2)}</span></div>
     </div>
-    <button class="checkout-btn" onclick="placeOrder()">Pay Securely &#x2014; $${grand.toFixed(2)}</button>
+    <div class="shipping-section">
+      <div class="shipping-title">📦 Shipping Address</div>
+      <div class="shipping-grid">
+        <div class="shipping-row">
+          <div class="shipping-field">
+            <label>Full Name</label>
+            <input class="shipping-input" type="text" placeholder="John Smith" value="${S.shipping.name}" oninput="updateShipping('name',this.value)">
+          </div>
+          <div class="shipping-field">
+            <label>Email</label>
+            <input class="shipping-input" type="email" placeholder="you@email.com" value="${S.shipping.email}" oninput="updateShipping('email',this.value)">
+          </div>
+        </div>
+        <div class="shipping-field">
+          <label>Street Address</label>
+          <input class="shipping-input" type="text" placeholder="123 Main St, Apt 4B" value="${S.shipping.address}" oninput="updateShipping('address',this.value)">
+        </div>
+        <div class="shipping-row-3">
+          <div class="shipping-field">
+            <label>City</label>
+            <input class="shipping-input" type="text" placeholder="Houston" value="${S.shipping.city}" oninput="updateShipping('city',this.value)">
+          </div>
+          <div class="shipping-field">
+            <label>State</label>
+            <input class="shipping-input" type="text" placeholder="TX" maxlength="2" value="${S.shipping.state}" oninput="updateShipping('state',this.value.toUpperCase())">
+          </div>
+          <div class="shipping-field">
+            <label>ZIP</label>
+            <input class="shipping-input" type="text" placeholder="77001" maxlength="10" value="${S.shipping.zip}" oninput="updateShipping('zip',this.value)">
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="checkout-btn" onclick="placeOrder()" ${shippingValid()?'':'disabled'} style="${shippingValid()?'':'opacity:.4;cursor:not-allowed'">Pay Securely &#x2014; $${grand.toFixed(2)}</button>
     </div>`;
   }
   document.getElementById('app').innerHTML=`${page}

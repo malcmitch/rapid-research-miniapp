@@ -348,7 +348,7 @@ function render(){
       const ctrl=qty>0
         ?`<div class="qty-control"><button class="qty-btn" onclick="event.stopPropagation();removeFromCart(${p.id})">&#x2212;</button><span class="qty-value">${qty}</span><button class="qty-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button></div>`
         :`<button class="add-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button>`;
-      return`<div class="product-card"><div class="product-visual">${badge}${p.img?`<img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy">`:`<span class="product-icon">${p.icon}</span>`}<span class="product-form-tag">${p.form}</span></div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-conc">${p.conc}</div><div class="product-purity">&lt;99% Purity</div><div class="product-bottom"><div class="product-price"><span class="dollar">$</span>${p.price.toFixed(2)}</div>${ctrl}</div></div></div>`;
+      return`<div class="product-card"><div class="product-visual">${badge}${p.img?('<img class="product-img" src="'+p.img+'" alt="'+p.name+'" loading="lazy">'):'<span class="product-icon">'+p.icon+'</span>'}<span class="product-form-tag">${p.form}</span></div><div class="product-info"><div class="product-name">${p.name}</div><div class="product-conc">${p.conc}</div><div class="product-purity">&lt;99% Purity</div><div class="product-bottom"><div class="product-price"><span class="dollar">$</span>${p.price.toFixed(2)}</div>${ctrl}</div></div></div>`;
     }).join('');
     page=`<div class="banner"><div class="banner-glow-o"></div><div class="banner-glow-b"></div>
     <div class="banner-top"><div class="brand-row"><div class="brand-shield">&#x1F9EA;</div><div class="brand-text"><div class="b-name">Rapid <span>Research</span></div><div class="b-tag">${SHOP.tagline}</div></div></div><div class="live-badge"><div class="pulse-dot"></div>In Stock</div></div>
@@ -382,16 +382,16 @@ function render(){
     <div class="summary">
       <div class="summary-row"><span>Subtotal (${count} items)</span><span>$${total.toFixed(2)}</span></div>
       <div class="summary-row"><span>Shipping</span><span style="color:${ship===0?'var(--success)':'var(--text)'};font-weight:600">${ship===0?'FREE':'$'+ship.toFixed(2)}</span></div>
-      ${promoFreeShip?`<div class="summary-row" style="color:var(--success);font-size:11px">🎉 Promo code applied — free shipping!</div>`:total<150?`<div class="summary-row" style="color:var(--pink);font-size:11px">Add $${(150-total).toFixed(2)} more for free shipping</div>`:''}
+      ${promoFreeShip?'<div class="summary-row" style="color:var(--success);font-size:11px">🎉 Promo code applied — free shipping!</div>':total<150?'<div class="summary-row" style="color:var(--pink);font-size:11px">Add $'+(150-total).toFixed(2)+' more for free shipping</div>':''}
       <div class="summary-row total"><span>Total</span><span>$${grand.toFixed(2)}</span></div>
     </div>
     <div class="promo-section">
       <div class="shipping-title">🏷️ Promo Code</div>
       <div class="promo-row">
         <input class="promo-input ${S.promoStatus==='valid'?'valid':S.promoStatus==='invalid'?'invalid':''}" type="text" placeholder="Enter code" value="${S.promoInput}" oninput="S.promoInput=this.value" onkeydown="if(event.key==='Enter')applyPromo()">
-        ${S.promoCode?`<button class="promo-apply-btn" onclick="removePromo()">Remove</button>`:`<button class="promo-apply-btn" onclick="applyPromo()">Apply</button>`}
+        ${S.promoCode?'<button class="promo-apply-btn" onclick="removePromo()">Remove</button>':'<button class="promo-apply-btn" onclick="applyPromo()">Apply</button>'}
       </div>
-      ${S.promoStatus==='valid'?`<div class="promo-msg success">✓ ${PROMO_CODES[S.promoCode]?.label||'Code applied!'}</div>`:S.promoStatus==='invalid'?`<div class="promo-msg error">✗ Invalid code. Please try again.</div>`:''}
+      ${S.promoStatus==='valid'?('<div class="promo-msg success">✓ '+(PROMO_CODES[S.promoCode]?.label||'Code applied!')+'</div>'):S.promoStatus==='invalid'?'<div class="promo-msg error">✗ Invalid code. Please try again.</div>':''}
     </div>
     <div class="shipping-section">
       <div class="shipping-title">📦 Shipping Address</div>

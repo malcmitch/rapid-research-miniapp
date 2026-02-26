@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="format-detection" content="telephone=no">
-<title>Rapid Labs Beauty</title>
+<title>Rapid Labs | Research Products</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -14,13 +14,13 @@
     --navy: #122042;
     --navy-mid: #1a2d5a;
     --navy-light: #243a6e;
-    --pink: #ff7eb3;
-    --pink-bright: #ffb7d5;
-    --pink-dim: rgba(255, 126, 179, 0.10);
-    --pink-glow: rgba(255, 126, 179, 0.25);
-    --blue-accent: #2e7bc4;
-    --blue-bright: #4da3e8;
-    --blue-dim: rgba(46, 123, 196, 0.12);
+    --pink: #ff6600;
+    --pink-bright: #ff8533;
+    --pink-dim: rgba(255, 102, 0, 0.10);
+    --pink-glow: rgba(255, 102, 0, 0.25);
+    --blue-accent: #0066cc;
+    --blue-bright: #0080ff;
+    --blue-dim: rgba(0, 102, 204, 0.12);
     --bg: var(--navy-deep);
     --text: #e8eaf0;
     --text-secondary: #a0aec0;
@@ -273,15 +273,25 @@
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 const API_BASE = '';
 
-const SHOP={name:"Rapid Labs Beauty",tagline:"PREMIUM SKINCARE SOLUTIONS",currency:"$",
-categories:[{id:"all",name:"All"},{id:"serums",name:"Serums"},{id:"moisturizers",name:"Moisturizers"},{id:"cleansers",name:"Cleansers"}],
+const SHOP={name:"Rapid Labs",tagline:"RESEARCH PRODUCTS",currency:"$",
+categories:[{id:"all",name:"All"},{id:"glp",name:"GLP"},{id:"peptides",name:"Peptides"},{id:"support",name:"Support"}],
 products:[
-{id:1,cat:"serums",icon:"✨",name:"Glow Vitamin C Serum",conc:"30ml / bottle",purity:"Pure",form:"Serum",price:25.00,badge:"hot"},
-{id:2,cat:"moisturizers",icon:"💧",name:"Hydra-Boost Moisturizer",conc:"50ml / jar",purity:"Pure",form:"Cream",price:30.00,badge:""},
-{id:3,cat:"serums",icon:"🌙",name:"Night Repair Retinol",conc:"30ml / bottle",purity:"Pure",form:"Serum",price:35.00,badge:"new"},
-{id:4,cat:"cleansers",icon:"🧼",name:"Gentle Foaming Cleanser",conc:"150ml / bottle",purity:"Pure",form:"Foam",price:18.00,badge:""},
-{id:5,cat:"serums",icon:"🌿",name:"Hyaluronic Acid B5",conc:"30ml / bottle",purity:"Pure",form:"Serum",price:22.00,badge:""},
-{id:6,cat:"moisturizers",icon:"☀️",name:"Daily SPF 50+",conc:"50ml / tube",purity:"Pure",form:"Lotion",price:28.00,badge:"hot"},
+{id:1,cat:"glp",icon:"💉",name:"GLP-1S",conc:"5mg / vial",purity:"Research",form:"Vial",price:85.00,badge:"hot"},
+{id:2,cat:"glp",icon:"💉",name:"GLP-1S",conc:"10mg / vial",purity:"Research",form:"Vial",price:125.00,badge:""},
+{id:3,cat:"glp",icon:"💉",name:"GLP-1S",conc:"15mg / vial",purity:"Research",form:"Vial",price:165.00,badge:""},
+{id:4,cat:"glp",icon:"💉",name:"GLP-TR",conc:"5mg / vial",purity:"Research",form:"Vial",price:75.00,badge:""},
+{id:5,cat:"glp",icon:"💉",name:"GLP-2R",conc:"10mg / vial",purity:"Research",form:"Vial",price:115.00,badge:""},
+{id:6,cat:"glp",icon:"💉",name:"GLP-2R",conc:"15mg / vial",purity:"Research",form:"Vial",price:155.00,badge:""},
+{id:7,cat:"glp",icon:"💉",name:"GLP-3R",conc:"5mg / vial",purity:"Research",form:"Vial",price:90.00,badge:""},
+{id:8,cat:"glp",icon:"💉",name:"GLP-3R",conc:"10mg / vial",purity:"Research",form:"Vial",price:130.00,badge:""},
+{id:9,cat:"glp",icon:"💉",name:"GLP-3R",conc:"15mg / vial",purity:"Research",form:"Vial",price:170.00,badge:""},
+{id:10,cat:"peptides",icon:"🧬",name:"GHK-Cu",conc:"50mg / vial",purity:"Research",form:"Vial",price:45.00,badge:""},
+{id:11,cat:"peptides",icon:"🧬",name:"GHK-Cu",conc:"100mg / vial",purity:"Research",form:"Vial",price:75.00,badge:""},
+{id:12,cat:"peptides",icon:"🧬",name:"Mots-C",conc:"10mg / vial",purity:"Research",form:"Vial",price:55.00,badge:""},
+{id:13,cat:"peptides",icon:"🧬",name:"Selank",conc:"10mg / vial",purity:"Research",form:"Vial",price:55.00,badge:""},
+{id:14,cat:"peptides",icon:"🧬",name:"5-Amino-1MQ",conc:"10mg / vial",purity:"Research",form:"Vial",price:75.00,badge:"new"},
+{id:15,cat:"support",icon:"💧",name:"Bacteriostatic Water",conc:"10ml / vial",purity:"Sterile",form:"Liquid",price:38.00,badge:""},
+{id:16,cat:"support",icon:"⚡",name:"NAD+",conc:"500mg / vial",purity:"Research",form:"Vial",price:150.00,badge:""},
 ]};
 
 const tg=window.Telegram?.WebApp;

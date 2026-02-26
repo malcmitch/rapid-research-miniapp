@@ -100,6 +100,7 @@ export default async function handler(req, res) {
 
     const customerName = escapeMarkdown(meta.customer_name || "Guest");
     const customerEmail = escapeMarkdown(meta.customer_email || session.customer_email || "N/A");
+    const shippingAddress = escapeMarkdown(meta.shipping_address || "Not provided");
     const itemsSummary = meta.items_summary || "See Stripe dashboard";
     const total = meta.total_usd
       ? `$${meta.total_usd}`
@@ -118,6 +119,7 @@ export default async function handler(req, res) {
       ``,
       `👤 *Customer:* ${customerName}`,
       `📧 *Email:* ${customerEmail}`,
+      `📍 *Ship To:* ${shippingAddress}`,
       ``,
       `📦 *Items:*`,
       itemLines,

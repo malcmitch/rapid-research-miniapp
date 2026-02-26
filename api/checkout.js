@@ -40,7 +40,7 @@ export default async function handler(req, res) {
   const stripe = new Stripe(stripeKey);
 
   try {
-    const { items, customerName, customerEmail } = req.body;
+    const { items, customerName, customerEmail, shippingAddress } = req.body;
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "items array is required" });
@@ -52,7 +52,7 @@ export default async function handler(req, res) {
         currency: "usd",
         product_data: {
           name: `${item.name} (${item.conc})`,
-          description: "Research use only — ≥98% purity, COA verified",
+          description: "Research use only — <99% purity",
           metadata: { productId: String(item.id) },
         },
         unit_amount: Math.round(item.price * 100),
@@ -66,6 +66,18 @@ export default async function handler(req, res) {
       req.headers.referer?.replace(/\/$/, "") ||
       "https://rapid-research-miniapp.vercel.app";
 
+    // Format shipping address for metadata
+    const shipAddr = shippingAddress || {};
+    const shippingLine = [
+      shipAddr.address,
+      shipAddr.city,
+      shipAddr.state,
+      shipAddr.zip,
+      shipAddr.country || "US",
+    ]
+      .filter(Boolean)
+      .join(", ");
+
     // Create Stripe Checkout session
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -73,11 +85,12 @@ export default async function handler(req, res) {
       mode: "payment",
       success_url: `${origin}?payment=success&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}?payment=cancelled`,
-      customer_email: customerEmail || undefined,
+      customer_email: customerEmail || shipAddr.email || undefined,
       allow_promotion_codes: true,
       metadata: {
-        customer_name: customerName || "Guest",
-        customer_email: customerEmail || "",
+        customer_name: customerName || shipAddr.name || "Guest",
+        customer_email: customerEmail || shipAddr.email || "",
+        shipping_address: shippingLine,
         items_summary: items
           .map((i) => `${i.name} (${i.conc}) x${i.qty}`)
           .join(", ")

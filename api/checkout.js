@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: "Stripe not configured" });
   }
 
-  const stripe = new Stripe(stripeKey, { apiVersion: "2025-03-31" });
+  const stripe = new Stripe(stripeKey);
 
   try {
     const { items, customerName, customerEmail } = req.body;

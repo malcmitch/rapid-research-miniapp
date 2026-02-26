@@ -426,7 +426,7 @@ function render(){
         </div>
       </div>
     </div>
-    <button class="checkout-btn" onclick="placeOrder()" ${shippingValid()?'':'disabled'} style="${shippingValid()?'':'opacity:.4;cursor:not-allowed'">Pay Securely &#x2014; $${grand.toFixed(2)}</button>
+    <button class="checkout-btn" onclick="placeOrder()" ${shippingValid()?'':'disabled'} style="${shippingValid()?'':'opacity:.4;cursor:not-allowed'}">Pay Securely &#x2014; $${grand.toFixed(2)}</button>
     </div>`;
   }
   document.getElementById('app').innerHTML=`${page}

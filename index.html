@@ -374,7 +374,7 @@ function render(){
   let cartSheet='';
   if(S.cartSheetOpen){
     const items=Object.entries(S.cart).map(([id,qty])=>{const p=SHOP.products.find(x=>x.id===+id);return p?{...p,qty}:null;}).filter(Boolean);
-    const ship=total>=150?0:9.95,grand=total+ship;
+    const promoFreeShip=S.promoCode&&PROMO_CODES[S.promoCode]?.freeShipping;const ship=promoFreeShip||total>=150?0:9.95,grand=total+ship;
     cartSheet=`<div class="overlay" onclick="closeSheet()"></div><div class="sheet">
     <div class="sheet-handle"></div>
     <div class="sheet-header"><div class="sheet-title">Your Order</div><button class="sheet-clear" onclick="clearCart()">Clear All</button></div>

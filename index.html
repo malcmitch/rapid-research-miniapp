@@ -113,8 +113,6 @@
   .summary-row { display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary); }
   .summary-row.total { font-size:18px;font-weight:800;color:#fff;margin-top:6px;padding-top:12px;border-top:1px dashed var(--border); }
   .checkout-btn { width:100%;margin-top:24px;padding:16px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--pink),var(--pink-bright));color:#fff;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit; }
-
-  /* SHIPPING FORM */
   .shipping-section { margin-top:20px; }
   .shipping-title { font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:6px; }
   .shipping-grid { display:grid;gap:10px; }
@@ -125,8 +123,6 @@
   .shipping-input::placeholder { color:var(--hint); }
   .shipping-row { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
   .shipping-row-3 { display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px; }
-
-  /* PROMO CODE */
   .promo-section { margin-top:16px; }
   .promo-row { display:flex;gap:8px;align-items:center; }
   .promo-input { flex:1;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:13px;font-family:inherit;outline:none;transition:border-color .15s;text-transform:uppercase;letter-spacing:1px; }
@@ -220,15 +216,15 @@ const SHOP={
   name:"Rapid Research",tagline:"RESEARCH PRODUCTS",
   categories:[{id:"all",name:"All"},{id:"glp",name:"GLP"},{id:"peptides",name:"Peptides"},{id:"support",name:"Support"}],
   products:[
-    {id:1,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/glp1r_vial_1771567107059.png",name:"GLP-1S",conc:"5mg / vial",purity:"Research",form:"Vial",price:44.99,badge:"hot"},
-    {id:2,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/glp1r_vial_1771567107059.png",name:"GLP-1S",conc:"10mg / vial",purity:"Research",form:"Vial",price:69.99,badge:""},
-    {id:3,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/glp1r_vial_1771567107059.png",name:"GLP-1S",conc:"15mg / vial",purity:"Research",form:"Vial",price:79.99,badge:""},
-    {id:4,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/tirzepatide_vial.png",name:"GLP-TR",conc:"5mg / vial",purity:"Research",form:"Vial",price:54.99,badge:""},
-    {id:5,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/retatrutide_vial.png",name:"GLP-2R",conc:"10mg / vial",purity:"Research",form:"Vial",price:74.99,badge:""},
-    {id:6,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/retatrutide_vial.png",name:"GLP-2R",conc:"15mg / vial",purity:"Research",form:"Vial",price:109.99,badge:""},
-    {id:7,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/retatrutide_vial.png",name:"GLP-3R",conc:"5mg / vial",purity:"Research",form:"Vial",price:79.99,badge:""},
-    {id:8,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/retatrutide_vial.png",name:"GLP-3R",conc:"10mg / vial",purity:"Research",form:"Vial",price:84.99,badge:""},
-    {id:9,cat:"glp",icon:"&#x1F489;",img:"https://rapid-research.co/products/retatrutide_vial.png",name:"GLP-3R",conc:"15mg / vial",purity:"Research",form:"Vial",price:109.99,badge:""},
+    {id:1,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp1s_vial.png",name:"GLP-1S",conc:"5mg / vial",purity:"Research",form:"Vial",price:44.99,badge:"hot"},
+    {id:2,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp1s_vial.png",name:"GLP-1S",conc:"10mg / vial",purity:"Research",form:"Vial",price:69.99,badge:""},
+    {id:3,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp1s_vial.png",name:"GLP-1S",conc:"15mg / vial",purity:"Research",form:"Vial",price:79.99,badge:""},
+    {id:4,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp2t_vial.png",name:"GLP-2T",conc:"5mg / vial",purity:"Research",form:"Vial",price:54.99,badge:""},
+    {id:5,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp2t_vial.png",name:"GLP-2T",conc:"10mg / vial",purity:"Research",form:"Vial",price:74.99,badge:""},
+    {id:6,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp2t_vial.png",name:"GLP-2T",conc:"15mg / vial",purity:"Research",form:"Vial",price:109.99,badge:""},
+    {id:7,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp3r_vial.png",name:"GLP-3R",conc:"5mg / vial",purity:"Research",form:"Vial",price:79.99,badge:""},
+    {id:8,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp3r_vial.png",name:"GLP-3R",conc:"10mg / vial",purity:"Research",form:"Vial",price:84.99,badge:""},
+    {id:9,cat:"glp",icon:"&#x1F489;",img:"https://raw.githubusercontent.com/malcmitch/rapid-research-miniapp/main/glp3r_vial.png",name:"GLP-3R",conc:"15mg / vial",purity:"Research",form:"Vial",price:109.99,badge:""},
     {id:10,cat:"peptides",icon:"&#x1F9EC;",img:"https://rapid-research.co/products/ghk_cu_vial_1771567293611.png",name:"GHK-Cu",conc:"50mg / vial",purity:"Research",form:"Vial",price:39.99,badge:""},
     {id:11,cat:"peptides",icon:"&#x1F9EC;",img:"https://rapid-research.co/products/ghk_cu_vial_1771567293611.png",name:"GHK-Cu",conc:"100mg / vial",purity:"Research",form:"Vial",price:59.99,badge:""},
     {id:12,cat:"peptides",icon:"&#x1F9EC;",img:"https://rapid-research.co/products/mots_c_vial_1771567371156.png",name:"Mots-C",conc:"10mg / vial",purity:"Research",form:"Vial",price:34.99,badge:""},
@@ -253,12 +249,10 @@ function closeSheet(){document.querySelector('.overlay')?.classList.remove('visi
 function toggleAgeCheck(i){S.ageChecks[i]=!S.ageChecks[i];haptic('sel');render();}
 function enterShop(){if(S.ageChecks.every(Boolean)){S.ageVerified=true;haptic('success');render();}}
 function showToast(msg,duration=3000){const t=document.getElementById('toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),duration);}
-// Valid promo codes — add more here as needed
 const PROMO_CODES = {
   'FREESHIP': { freeShipping: true, label: 'Free shipping applied!' },
   'RAPIDSHIP': { freeShipping: true, label: 'Free shipping applied!' },
 };
-
 function updateShipping(field, value){ S.shipping[field]=value; }
 function applyPromo(){
   const code = S.promoInput.trim().toUpperCase();
@@ -274,7 +268,6 @@ function applyPromo(){
 }
 function removePromo(){ S.promoCode=''; S.promoInput=''; S.promoStatus=''; render(); }
 function shippingValid(){ const s=S.shipping; return s.name&&s.email&&s.address&&s.city&&s.state&&s.zip; }
-
 async function placeOrder(){
   const items=[];
   for(const[id,qty]of Object.entries(S.cart)){const p=SHOP.products.find(x=>x.id===+id);if(p)items.push({id:p.id,name:p.name,conc:p.conc,price:p.price,qty});}
